@@ -6,6 +6,7 @@ body {
     width: 100vw;
     height: 100vh;
     background: linear-gradient(116.1deg, #AED224 29.38%, rgba(174, 210, 36, 0) 98.97%);
+    font-family: Arial, Helvetica, sans-serif;
 
     display: flex;
     flex-direction: row;
@@ -13,24 +14,10 @@ body {
     align-items: center;
 }
 
-.logo-container {
-    width: 50%;
-    text-align: center;
-
-    font-family: Arial, Helvetica, sans-serif;
+.logo-container img {
+    width: 90%;
     color: #F9FBE7;
-}
-
-#logo {
-    margin: 0;
-    font-size: 700%;
-    font-weight: 550;
-}
-
-#logo-text {
-    margin: 0;
-    font-size: 300%;
-    font-weight: lighter;
+    text-align: center;
 }
 
 .login-container {
@@ -38,10 +25,11 @@ body {
 }
 
 .signup-container {
-    width: 100%;
+    width: 50%;
 }
 
 form {
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,13 +43,8 @@ form {
     border-radius: 30px;
 }
 
-input {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    width: 60%;
+input { 
+    width: 80%;
     height: 15%;
 
     -webkit-box-sizing: border-box; 
@@ -85,12 +68,7 @@ input {
 }
 
 button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    width: 60%;
+    width: 80%;
     height: 15%;
 
     margin: 0.75em;
@@ -106,27 +84,64 @@ button {
 }
 
 .input-text {
-    margin: 0;
-    margin-top: 0.3em;
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
 
     font-size: 400%;
-    font-family: Arial, Helvetica, sans-serif;
+    
     color: #8E9568;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #signup-text {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 75%;
+    text-align: center;
 
     font-size: 150%;
-    font-family: Arial, Helvetica, sans-serif;
     color: #8E9568;
 }
 
 a {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #8E9568;
+    color: inherit;
+    font-size: inherit;
+}
+
+@media only screen and (max-device-width: 420px) {
+    .container {
+        flex-direction: column;
+    }
+
+    * {
+        font-size: 36px;
+    }
+
+    .login-container {
+        width: 100%;
+    }
+
+    .signup-container {
+        width: 100%;
+    }
+
+    .logo-container {
+        width: 90%;
+    }
+
+    form {
+        margin: auto;
+    }
+
+    input {
+        border-radius: 60px;
+        margin: 0.2em;
+    }
+
+    button {
+        border-radius: 60px;
+        margin: 0.2em;
+    }
+
+    .input-text {
+        margin-top: 0;
+        margin-bottom: 0.5em;
+    }
 }
