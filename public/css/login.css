@@ -28,7 +28,7 @@ body {
     width: 50%;
 }
 
-form {
+form.login {
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@ form {
     border-radius: 30px;
 }
 
-input { 
+input, .input-box { 
     width: 80%;
     height: 15%;
 
@@ -81,6 +81,8 @@ button {
     font-size: 175%;
     font-style: normal;
     color: #F9FBE7;
+
+    cursor: pointer;
 }
 
 .input-text {
@@ -145,3 +147,6 @@ a {
         margin-bottom: 0.5em;
     }
 }
+
+
+
