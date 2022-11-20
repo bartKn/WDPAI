@@ -1,0 +1,70 @@
+.event {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.participants {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-img {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 60%;
+    height: 32%;
+    align-self: center;
+    margin-top: 2em;
+}
+
+button {
+    align-self: center;
+    width: 60%;
+}
+
+select {
+    width: 25%;
+}
+
+.participants-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2em;
+    padding: 2em;
+    overflow: auto;
+}
+
+.participants-container > a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.participant {
+    font-size: 50%;
+    width: 60%;
+    border-bottom: 2px solid #000000;
+}
+
+.participant > p {
+    margin-left: 0em;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8E9568;
+    border: 0.3vw solid #ffffff;
+    border-radius: 5vw;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F9FBE7;
+}
+
