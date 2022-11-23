@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/global-main.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/team.css">
 
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>TEAM</title>
@@ -11,7 +14,7 @@
             <a href="main-page.html">
                 <img src="../img/logo.svg">
             </a>
-            <ul>
+            <ul class="nav-list">
                 <li>
                     <a href="team.html">
                         <i class="fa-solid fa-users"></i>
@@ -30,11 +33,119 @@
             </ul>
         </nav>
         <main>
-            <section class="runs">
-                
+            <section class="items">
+                <div class="items-container">
+                    <h1>members</h1>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p> 
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    <a href="profile.html">
+                        <div class="item">
+                            <p>Name Surname</p>
+                            <p>Start Point Address</p>
+                        </div>
+                    </a>
+                    
+                </div>
+                <section class="buttons">
+                    <button class="add-button member-button disabled-button">
+                        <i class="fa-solid fa-plus"></i>
+                        Join team!
+                    </button>
+                    <button class="add-button member-button">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Leave team
+                    </button>
+                </section>
             </section>
+            
             <div class="separator"></div>
-            <div class="add-run">
+            <div class="add-event">
+                <form>
+                    <label for="partcicipants">Participants:</label>
+                    <input type="range" value="24" min="1" max="100" step="1" oninput="this.nextElementSibling.value = this.value">
+                    <output>24</output>
+    
+                    <label for="date">Date:</label>
+                    <input type="date">
+    
+                    <label for="myfile">Upload GPS track:</label>
+                    <input type="file" id="myfile" name="myfile">
+
+                    <label for="type">Select type of surface:</label>
+                    <select id="type" name="type">
+                        <option value="trail">Trail</option>
+                        <option value="asphalt">Asphalt</option>
+                        <option value="mixed">Mixed</option>
+                    </select>
+                </form>
+                <button class="add-button">
+                    <i class="fa-solid fa-plus"></i>
+                    Add event!
+                </button>
             </div>
         </main>
     </div>

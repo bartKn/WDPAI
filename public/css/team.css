@@ -1,0 +1,35 @@
+.items-container {
+    height: 75%;
+}
+
+.item {
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.25);
+}
+
+.buttons {
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-button {
+    height: 30%;
+    width: 40%;
+}
+
+.disabled-button {
+    background-color: rgb(212, 206, 206);
+}
+
+.add-event {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    height: 80%;
+}
