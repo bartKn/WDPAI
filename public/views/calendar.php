@@ -9,22 +9,22 @@
 <body>
     <div class="base-container">
         <nav>
-            <a href="main-page.html">
+            <a href="mainpage">
                 <img src="public/img/logo.svg">
             </a>
             <ul class="nav-list">
                 <li>
-                    <a href="team.html">
+                    <a href="team">
                         <i class="fa-solid fa-users"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="calendar.html">
+                    <a href="calendar">
                         <i class="fa-solid fa-calendar-days"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="profile.html">
+                    <a href="profile">
                         <i class="fa-solid fa-user"></i>
                     </a>
                 </li>
@@ -95,7 +95,7 @@
                         <div class="day event-day">
                             <ul class="events">
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event1 name
                                     </a>
                                 </li>
@@ -109,7 +109,7 @@
                         <div class="day event-day">
                             <ul class="events">
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event1 name
                                     </a>
                                 </li>
@@ -143,52 +143,52 @@
                         <div class="day event-day">
                             <ul class="events">
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event1 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event2 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event1 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event2 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event1 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event2 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event1 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event2 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event1 name
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event2 name
                                     </a>
                                 </li>
@@ -274,7 +274,7 @@
                         <div class="day event-day">
                             <ul class="events">
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event4 name
                                     </a>
                                 </li>
@@ -392,7 +392,7 @@
                         <div class="day event-day">
                             <ul class="events">
                                 <li>
-                                    <a href="event.html">
+                                    <a href="event.php">
                                         Event5 name
                                     </a>
                                 </li>

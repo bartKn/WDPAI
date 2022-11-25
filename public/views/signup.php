@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/login.css">
     <title>SIGNUP PAGE</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
                 <input name="password" type="password" placeholder="Password">
                 <button>Sign Up</button>
             </form>
-            <p id="signup-text">Already a Member?&nbsp;<a href="login.html">Log In!</a></p>
+            <p id="signup-text">Already a Member?&nbsp;<a href="login">Log In!</a></p>
         </div>    
     </div>
 </body>

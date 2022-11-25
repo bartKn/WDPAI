@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/global-main.css">
-    <link rel="stylesheet" type="text/css" href="public/css/login.css">
-    <link rel="stylesheet" type="text/css" href="public/css/profile.css">
-    <link rel="stylesheet" type="text/css" href="public/css/event.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/global-main.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/event.css">
 
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>EVENT</title>
@@ -11,22 +11,22 @@
 <body>
     <div class="base-container">
         <nav>
-            <a href="main-page.html">
+            <a href="mainpage">
                 <img src="public/img/logo.svg">
             </a>
             <ul class="nav-list">
                 <li>
-                    <a href="team.html">
+                    <a href="team">
                         <i class="fa-solid fa-users"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="calendar.html">
+                    <a href="calendar">
                         <i class="fa-solid fa-calendar-days"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="profile.html">
+                    <a href="profile">
                         <i class="fa-solid fa-user"></i>
                     </a>
                 </li>
@@ -53,7 +53,7 @@
                         Team name
                     </div>
                 </div>
-                <img class="map-img" src="public/img/gpsTrack.png">
+                <img class="map-img" src="/public/img/gpsTrack.png">
                 <button>Download GPS track</button>
                 <button>Sign up for event!</button>
             </section>
@@ -67,55 +67,55 @@
                     </select>
                 </form>
                 <div class="participants-container">
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
                         </div>
                     </a>
-                    <a href="profile.html">
+                    <a href="profile">
                         <div class="participant">
                             <p>Name Surname</p>
                             <p>Team Name</p>
@@ -126,4 +126,3 @@
         </main>
     </div>
 </body>
-</html>
