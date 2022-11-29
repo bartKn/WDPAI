@@ -13,4 +13,5 @@ Routing::get('mainpage', 'DefaultController');
 Routing::get('profile', 'DefaultController');
 Routing::get('signup', 'DefaultController');
 Routing::get('team', 'DefaultController');
+Routing::post('addEvent', 'EventController');
 Routing::run($path);

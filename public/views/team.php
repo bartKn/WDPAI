@@ -124,23 +124,23 @@
             
             <div class="separator"></div>
             <div class="add-event">
-                <form>
+                <form action="addEvent" method="POST" ENCTYPE="multipart/form-data">
                     <div class="input-container">
                         <label for="name">Event name:</label>
-                        <input class="event-input" type="text" placeholder="public.">
+                        <input class="event-input" type="text" placeholder="..." name="eventName">
                     </div>
                     <div class="input-container">
                         <label for="date">Date:</label>
-                        <input class="event-input" type="date">
-                        <input class="event-input" type="time">
+                        <input class="event-input" type="date" name="eventDate">
+                        <input class="event-input" type="time" name="eventTime">
                     </div>
                     <div class="input-container">
                         <label for="location">Start location:</label>
-                        <input class="event-input" type="text" placeholder="public.">
+                        <input class="event-input" type="text" placeholder="..." name="eventLocation">
                     </div>
                     <div class="input-container">
                         <label for="type">Type of surface:</label>
-                        <select id="type" name="type">
+                        <select id="type" name="surfaceType">
                             <option value="trail">Trail</option>
                             <option value="asphalt">Asphalt</option>
                             <option value="mixed">Mixed</option>
@@ -148,23 +148,34 @@
                     </div>
                     <div class="input-container">
                         <label for="distance">Distance:</label>
-                        <input class="event-input" type="range" value="1" min="1" max="300" step="1" oninput="this.nextElementSibling.value = this.value">
+                        <input class="event-input" name="distance" type="range" value="1" min="1" max="300" step="1" oninput="this.nextElementSibling.value = this.value">
                         <output>1</output>
                     </div>
                     <div class="input-container">
                         <label for="partcicipants">Participants:</label>
-                        <input class="event-input" type="range" value="24" min="1" max="100" step="1" oninput="this.nextElementSibling.value = this.value">
+                        <input class="event-input" name="participants" type="range" value="24" min="1" max="100" step="1" oninput="this.nextElementSibling.value = this.value">
                         <output>24</output>
                     </div>
                     <div class="input-container">
-                        <label for="myfile">GPS track:</label>
-                        <input class="event-input" type="file" id="myfile" name="myfile">
+                        <label for="file">GPS track:</label>
+                        <input class="event-input" type="file" id="file" name="file">
                     </div>
+                    <div class="messages">
+                        <?php
+                        if (isset($messages))
+                        {
+                            foreach ($messages as $message)
+                            {
+                                echo $message;
+                            }
+                        }
+                        ?>
+                    </div>
+                    <button class="add-button" type="submit">
+                        <i class="fa-solid fa-plus"></i>
+                        Add event!
+                    </button>
                 </form>
-                <button class="add-button">
-                    <i class="fa-solid fa-plus"></i>
-                    Add event!
-                </button>
             </div>
         </main>
     </div>
