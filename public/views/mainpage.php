@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/public/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/team.css">
     <link rel="stylesheet" type="text/css" href="/public/css/global-main.css">
     <link rel="stylesheet" type="text/css" href="/public/css/main.css">
 
@@ -93,15 +93,18 @@
                 </div>
             </section>
             <div class="separator"></div>
-            <div class="add-run">
+            <div class="add-event">
                 <h1>Add new run!</h1>
-                <form class="run-input">
-                    <input type="text" placeholder="Start point">
-                    <div class="input-box">
+                <form>
+                    <div class="input-container">
+                        <label for="start-point">Start point:</label>
+                        <input type="text" placeholder="...">
+                    </div>
+                    <div class="input-container">
                         <label for="time">Time:</label>
                         <input type="time" id="time">
                     </div>
-                    <div class="input-box">
+                    <div class="input-container">
                         <label for="distance">Distance:</label>
                         <select id="distance" name="distance">
                             <option value="1">1 km</option>
@@ -120,7 +123,7 @@
                             <option value="30">Over 20 km</option>
                         </select>
                     </div>
-                    <div class="input-box">
+                    <div class="input-container">
                         <label for="pace">Pace:</label>
                         <select id="pace" name="pace">
                             <option value="300">Under 4:00 min/km</option>
@@ -136,11 +139,11 @@
                             <option value="700">Over 6:00 min/km</option>
                         </select>
                     </div>
+                    <button class="add-button">
+                        <i class="fa-solid fa-plus"></i>
+                        Add run!
+                    </button>
                 </form>
-                <button class="add-button">
-                    <i class="fa-solid fa-plus"></i>
-                    Add run!
-                </button>
             </div>
         </main>
     </div>

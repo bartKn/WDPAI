@@ -67,446 +67,412 @@
                     </select>
                 </form>
             </div>
-            <table>
-                <thead>
-                  <tr id="col-header">
-                    <td>Mon.</td>
-                    <td>Tue.</td>
-                    <td>Wen.</td>
-                    <td>Thu.</td>
-                    <td>Fri.</td>
-                    <td>Sat.</td>
-                    <td>Sun.</td>
-                  </tr>
-                </thead>
-                <tbody id="cal-content">
-                  <tr>
-                    <td>
-                        <div class="day other-month-day">
-                            <ul class="events">
+            <div class="calendar-grid">
+                <div class="cell">Mon.</div>
+                <div class="cell">Tue.</div>
+                <div class="cell">Wed.</div>
+                <div class="cell">Thu.</div>
+                <div class="cell">Fri.</div>
+                <div class="cell">Sat.</div>
+                <div class="cell">Sun.</div>
+                <div class="day other-month-day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                31
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day event-day">
-                            <ul class="events">
-                                <li>
-                                    <a href="event.php">
-                                        Event1 name
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="day-number">
-                                1
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day event-day">
-                            <ul class="events">
-                                <li>
-                                    <a href="event.php">
-                                        Event1 name
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="day-number">
-                                2
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        31
+                    </p>
+                </div>
+                <div class="day event-day">
+                    <ul class="events web-events">
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="day-number">
+                        1
+                    </p>
+                </div>
+                <div class="day event-day">
+                    <ul class="events web-events">
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="day-number">
+                        2
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                3
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        3
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                4
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day event-day">
-                            <ul class="events">
-                                <li>
-                                    <a href="event.php">
-                                        Event1 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event2 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event1 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event2 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event1 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event2 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event1 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event2 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event1 name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="event.php">
-                                        Event2 name
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="day-number">
-                                5
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        4
+                    </p>
+                </div>
+                <div class="day event-day">
+                    <ul class="events web-events">
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="day-number">
+                        5
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                6
-                            </p>
-                        </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        6
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                7
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        7
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                8
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        8
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                9
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        9
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                10
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        10
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                11
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        11
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                12
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day event-day">
-                            <ul class="events">
-                                <li>
-                                    <a href="event.php">
-                                        Event4 name
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="day-number">
-                                13
-                            </p>
-                        </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        12
+                    </p>
+                </div>
+                <div class="day event-day">
+                    <ul class="events web-events">
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="day-number">
+                        13
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                14
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        14
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                15
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        15
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                16
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        16
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                17
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        17
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                18
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        18
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                19
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        19
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                20
-                            </p>
-                        </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        20
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                21
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        21
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                22
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        22
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                23
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day event-day">
-                            <ul class="events">
-                                <li>
-                                    <a href="event.php">
-                                        Event5 name
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="day-number">
-                                24
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        23
+                    </p>
+                </div>
+                <div class="day event-day">
+                    <ul class="events web-events">
+                        <li>
+                            <a href="event">
+                                Event1 name
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="day-number">
+                        24
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                25
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        25
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                26
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        26
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                27
-                            </p>
-                        </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        27
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                28
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        28
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                29
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        29
+                    </p>
+                </div>
+                <div class="day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                30
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day other-month-day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        30
+                    </p>
+                </div>
+                <div class="day other-month-day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                1
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day other-month-day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        1
+                    </p>
+                </div>
+                <div class="day other-month-day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                2
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day other-month-day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        2
+                    </p>
+                </div>
+                <div class="day other-month-day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                3
-                            </p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="day other-month-day">
-                            <ul class="events">
+                    </ul>
+                    <p class="day-number">
+                        3
+                    </p>
+                </div>
+                <div class="day other-month-day">
+                    <ul class="events web-events">
 
-                            </ul>
-                            <p class="day-number">
-                                4
-                            </p>
-                        </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                    </ul>
+                    <p class="day-number">
+                        4
+                    </p>
+                </div>
+            </div>
+            <div class="mobile-events">
+                <ul class="events">
+                    <li>
+                        <label class="day-number">1</label>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                    </li>
+                    <li>
+                        <label class="day-number">2</label>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                    </li>
+                    <li>
+                        <label class="day-number">5</label>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                    </li>
+                    <li>
+                        <label class="day-number">13</label>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                    </li>
+                    <li>
+                        <label class="day-number">24</label>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                        <a href="event">
+                            Event5 name
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </main>
     </div>
 </body>

@@ -131,8 +131,8 @@
                     </div>
                     <div class="input-container">
                         <label for="date">Date:</label>
-                        <input class="event-input" type="date" name="eventDate">
-                        <input class="event-input" type="time" name="eventTime">
+                        <input class="event-input" id="date-input" type="date" name="eventDate">
+                        <input class="event-input" id="time-input" type="time" name="eventTime">
                     </div>
                     <div class="input-container">
                         <label for="location">Start location:</label>

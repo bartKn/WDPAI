@@ -70,3 +70,55 @@ p {
     padding-bottom: 1em;
 }
 
+@media only screen and (max-device-width: 420px) {
+
+    .stats {
+        width: 100%;
+        order: 2;
+    }
+
+
+    .account {
+        width: 100%;
+        order: 1;
+        margin-bottom: 2em;
+    }
+
+    h1 {
+        font-size: 200%;
+        margin-bottom: 0;
+    }
+
+    .profile-pic {
+        margin-top: 0;
+    }
+
+    .details {
+        margin: 0.5em;
+    }
+
+    label {
+        font-size: 75%;
+    }
+
+    label > i {
+        font-size: 100%;
+    }
+
+    select {
+        width: 45%;
+        margin: 0.5em 0.5em 0em 0.5em;
+        font-size: 100%;
+    }
+
+    p {
+        margin-left: 0.5em;
+        font-size: 150%;
+    }
+
+    .stats-container {
+        align-self: flex-start;
+        margin-left: 1em;
+    }
+}
+
