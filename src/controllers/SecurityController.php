@@ -25,16 +25,36 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['User with this email not exist!']]);
         }
 
-        if ($user->getEmail() !== $email)
-        {
-            return $this->render('login', ['messages' => ['User with this email not exist!']]);
-        }
-
-        if ($user->getPassword() !== $password)
+        if (!password_verify($password, $user->getPassword()))
         {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
-
+        setcookie("user", $email, time() + 3600, '/');
         return $this->render('mainpage');
+    }
+
+    public function signup()
+    {
+        $userRepository = new UserRepository();
+
+        if (!$this->isPost())
+        {
+            return $this->render('signup');
+        }
+
+        $name = $_POST["name"];
+        $surname = $_POST["surname"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        $user = new User($name, $surname, $email, $password);
+
+        if ($userRepository->saveUser($user))
+        {
+            return $this->render('login', ['messages' => ['You can log in now!']]);
+        } else
+        {
+            return $this->render('signup', ['messages' => ['That email is taken!']]);
+        }
     }
 }

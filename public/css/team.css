@@ -38,6 +38,7 @@ button {
 .member-button {
     height: 30%;
     width: 40%;
+    background-color: rgb(212, 206, 206);
 }
 
 .disabled-button {
@@ -86,7 +87,7 @@ form {
 .input-container > input {
     height: 94%;
     width: 50%;
-    font-size: 150%;
+    font-size: 175%;
     border: none;
 }
 

@@ -29,7 +29,15 @@ body {
 }
 
 .signup {
-    height: 65vh;
+    height: 70vh;
+}
+
+.signup > input {
+    height: 20%;
+}
+
+.signup > button {
+    height: 20%;
 }
 
 form {
@@ -65,6 +73,8 @@ input, .input-box {
     font-size: 175%;
     font-style: normal;
     color: black;
+
+    outline: none;
 }
 
 ::placeholder {

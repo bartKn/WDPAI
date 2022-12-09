@@ -30,6 +30,11 @@
                         <i class="fa-solid fa-user"></i>
                     </a>
                 </li>
+                <li>
+                    <a href="logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <main>

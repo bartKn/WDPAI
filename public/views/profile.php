@@ -28,6 +28,11 @@
                         <i class="fa-solid fa-user"></i>
                     </a>
                 </li>
+                <li>
+                    <a href="logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <main>
@@ -83,13 +88,18 @@
                 <h1>account<br>details</h1>
                 <img class="profile-pic" src="/public/img/profile-pic.jpg">
                 <div class="details">
-                    <label id="name">Name Surname</label>
-                    <label id="team">Team Name</label>
-                    <label id="email">email@email.com</label>
-                    <label id="location">
-                        <i class="fa-solid fa-location-dot"></i>
-                        Location
-                    </label>
+                    <?php
+                    if (isset($user_details))
+                    {
+                        echo '<label id="name">'.$user_details['name'].' '.$user_details['surname'].'</label>';
+                        echo '<label id="team">'.'-'.'</label>';
+                        echo '<label id="email">'.$user_details['email'].'</label>';
+                        echo '<label id="location">
+                                <i class="fa-solid fa-location-dot"></i>
+                                    Location
+                              </label>';
+                    }
+                    ?>
                 </div>
             </section>
         </main>

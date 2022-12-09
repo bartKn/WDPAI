@@ -2,17 +2,17 @@
 
 class User
 {
-    private $email;
-    private $password;
     private $name;
     private $surname;
+    private $email;
+    private $password;
 
-    public function __construct(string $email, string $password, string $name, string $surname)
+    public function __construct(string $name, string $surname, string $email, string $password)
     {
-        $this->email = $email;
-        $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     public function getEmail(): string

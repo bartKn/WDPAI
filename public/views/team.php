@@ -2,8 +2,9 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/public/css/global-main.css">
     <link rel="stylesheet" type="text/css" href="/public/css/main.css">
-    <!-- <link rel="stylesheet" type="text/css" href="public/css/login.css"> -->
     <link rel="stylesheet" type="text/css" href="/public/css/team.css">
+
+    <script type="text/javascript" src="/public/js/script.js"></script>
 
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>TEAM</title>
@@ -28,6 +29,11 @@
                 <li>
                     <a href="profile">
                         <i class="fa-solid fa-user"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </a>
                 </li>
             </ul>
@@ -111,11 +117,7 @@
                     
                 </div>
                 <section class="buttons">
-                    <button class="add-button member-button disabled-button">
-                        <i class="fa-solid fa-plus"></i>
-                        Join team!
-                    </button>
-                    <button class="add-button member-button">
+                    <button class="add-button member-button" type="button" onclick="leaveTeam()">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         Leave team
                     </button>
@@ -124,6 +126,7 @@
             
             <div class="separator"></div>
             <div class="add-event">
+                <h1>add event</h1>
                 <form action="addEvent" method="POST" ENCTYPE="multipart/form-data">
                     <div class="input-container">
                         <label for="name">Event name:</label>

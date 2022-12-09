@@ -20,6 +20,11 @@ class DefaultController extends AppController {
         $this->render('login');
     }
 
+    public function logout() {
+        setcookie("user", '', time() - 7000000, '/');
+        $this->render('login');
+    }
+
     public function mainpage() {
         $this->render('mainpage');
     }
