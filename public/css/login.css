@@ -28,7 +28,11 @@ body {
     width: 50%;
 }
 
-form.login {
+.signup {
+    height: 65vh;
+}
+
+form {
     margin: auto;
     display: flex;
     flex-direction: column;

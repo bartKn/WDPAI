@@ -6,8 +6,10 @@
 <body>
     <div class="container">
         <div class="signup-container">
-            <form class="login">
+            <form class="signup">
                 <p class="input-text">Sign Up</p>
+                <input name="name" type="text" placeholder="Name">
+                <input name="surname" type="password" placeholder="Surname">
                 <input name="email" type="text" placeholder="Your email">
                 <input name="password" type="password" placeholder="Password">
                 <button>Sign Up</button>
