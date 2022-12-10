@@ -1,6 +1,7 @@
 <?php
 
 require_once 'AppController.php';
+require_once __DIR__.'/../repository/DailyRunsRepository.php';
 
 class DefaultController extends AppController {
     
@@ -23,10 +24,6 @@ class DefaultController extends AppController {
     public function logout() {
         setcookie("user", '', time() - 7000000, '/');
         $this->render('login');
-    }
-
-    public function mainpage() {
-        $this->render('mainpage');
     }
 
     public function profile() {

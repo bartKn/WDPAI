@@ -80,4 +80,18 @@ class UserRepository extends Repository
 
         return $team_id['team_id'];
     }
+
+    public function getMembersOfTeam(int $teamId): array
+    {
+        $stmt = $this->database->connect()->prepare("SELECT users.name, users.surname, users.email FROM users
+            JOIN user_info
+            ON user_info.user_id = users.id
+            WHERE user_info.team_id = :teamId");
+
+        $stmt->bindParam(':teamId', $teamId);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

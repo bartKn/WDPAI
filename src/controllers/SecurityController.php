@@ -1,6 +1,7 @@
 <?php /** @noinspection PhpVoidFunctionResultUsedInspection */
 
 require_once 'AppController.php';
+require_once 'DailyRunsController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
 
@@ -30,7 +31,9 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
         setcookie("user", $email, time() + 3600, '/');
-        return $this->render('mainpage');
+        
+        $mainpage = new DailyRunsController();
+        return $mainpage->mainpage();
     }
 
     public function signup()

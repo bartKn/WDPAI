@@ -5,6 +5,7 @@ require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/EventController.php';
 require_once 'src/controllers/ProfileController.php';
 require_once 'src/controllers/TeamController.php';
+require_once 'src/controllers/DailyRunsController.php';
 
 class Routing {
 

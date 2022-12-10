@@ -40,81 +40,22 @@
         </nav>
         <main>
             <section class="items">
-                <div class="items-container">
+                <div class="members-container items-container">
                     <h1>members</h1>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p> 
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="item">
-                            <p>Name Surname</p>
-                            <p>Start Point Address</p>
-                        </div>
-                    </a>
-                    
+                    <?php
+                    if (isset($members))
+                    {
+                        foreach ($members as $member)
+                        {
+                            echo '<a href="profile">';
+                            echo '<div class="item">';
+                            echo '<p>' .$member["name"] .' ' .$member["surname"] .'</p>';
+                            echo '<p>' .$member["email"] .'</p> ';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                    }
+                    ?>
                 </div>
                 <section class="buttons">
                     <button class="add-button member-button" type="button" onclick="leaveTeam()">

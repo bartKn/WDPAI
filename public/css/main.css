@@ -8,9 +8,14 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 25%;
     grid-gap: 2em;
     padding: 2em;
     overflow: auto;
+}
+
+.members-container {
+    grid-template-rows: 10%;
 }
 
 .items-container > h1 {
@@ -55,7 +60,6 @@ select {
     width: 70%;
     height: 100%;
     margin-right: 0;
-    color: #BBBABA;
     font-size: 175%;
     border-width: 0;
 }

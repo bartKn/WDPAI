@@ -92,7 +92,7 @@
                     if (isset($user_details))
                     {
                         echo '<label id="name">'.$user_details['name'].' '.$user_details['surname'].'</label>';
-                        echo '<label id="team">'.'-'.'</label>';
+                        echo '<label id="team">' .$user_details['teamName'] .'</label>';
                         echo '<label id="email">'.$user_details['email'].'</label>';
                         echo '<label id="location">
                                 <i class="fa-solid fa-location-dot"></i>

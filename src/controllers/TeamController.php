@@ -12,15 +12,18 @@ class TeamController extends AppController
         $team_id = $userRepository->getTeamId($_COOKIE["user"]);
 
         if ($team_id != 0) {
-            self::teamPage();
+            self::teamPage($team_id);
         } else {
             self::teamListPage();
         }
     }
 
-    private function teamPage()
+    private function teamPage(int $teamId)
     {
-        $this->render('team');
+        $userRepository = new UserRepository();
+
+        $members = $userRepository->getMembersOfTeam($teamId);
+        $this->render('team', ["members" => $members]);
     }
 
     private function teamListPage()
