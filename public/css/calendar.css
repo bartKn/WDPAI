@@ -1,12 +1,19 @@
 main {
     flex-direction: column;
     align-items: center;
+    overflow: auto;
 }
 
 .cal-header {
     width: 95%;
-    padding: 0em 2em;
+    padding: 0 2em;
     display: flex;
+}
+
+.cal-header > p {
+    font-size: 200%;
+    width: 16%;
+    font-weight: 700;
 }
 
 .cell {
@@ -29,9 +36,26 @@ select {
     border: 2px solid #000000;
     border-radius: 35px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    margin: 1em 1em 1em 0em;
+    margin: 1em 1em 1em 0;
     padding: 0.5%;
-    width: 25%;
+    width: 10%;
+    cursor: pointer;
+}
+
+.load-button {
+    width: 10%;
+
+    margin: 1em 1em 1em 0;
+    padding: 0.5%;
+
+    background: #AED244;
+    border: 2px solid #000000;
+    border-radius: 35px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    font-size: 150%;
+    color: #F9FBE7;
+
     cursor: pointer;
 }
 
@@ -40,9 +64,9 @@ select {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 2% 18% 18% 18% 18% 18%;
+    grid-template-rows: 2% 18% 18% 18% 18% 18% 18%;
     grid-gap: 2%;
-    padding: 0em 2em 2em 2em;
+    padding: 0 2em 2em 2em;
     justify-content: center;
     align-items: center;
 }
@@ -77,17 +101,16 @@ select {
 .day-number {
     width: 15%;
     height: 85%;
-    margin: 0;
     font-size: 125%;
-    margin-right: 5%;
+    margin: 0 5% 0 0;
 }
 
 .events {
     list-style-type: none;
     width: 70%;
     height: 100%;
-    padding: 0% 5% 0% 0%;
-    margin: 0% 10% 0% 5%;
+    padding: 0 5% 0 0;
+    margin: 0 10% 0 5%;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -110,7 +133,7 @@ select {
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
+    width: 0;
 }
 
 .mobile-events {
@@ -126,7 +149,7 @@ select {
         display: block;
         width: 100%;
         height: 40%;
-        margin: 10% 0% 10% 0%;
+        margin: 10% 0 10% 0;
     }
 
     .events {

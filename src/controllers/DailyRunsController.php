@@ -7,25 +7,31 @@ require_once __DIR__.'/../repository/DailyRunsRepository.php';
 
 class DailyRunsController extends AppController
 {
+    private $userRepository;
+    private $runsRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+        $this->runsRepository = new DailyRunsRepository();
+    }
+
     public function mainpage()
     {
-        $runsRepository = new DailyRunsRepository();
-        $runs = $runsRepository->getDailyRuns();
+        $runs = $this->runsRepository->getDailyRuns();
         $this->render('mainpage', ['runs' => $runs]);
     }
 
     public function addRun()
     {
-        $userRepository = new UserRepository();
-        $runsRepository = new DailyRunsRepository();
-
-        $creator_id = $userRepository->getUserId($_COOKIE["user"]);
+        $creator_id = $this->userRepository->getUserId($_COOKIE["user"]);
         $start_point = $_POST["start_point"];
         $time = $_POST["time"];
         $distance = $_POST["distance"];
         $pace = $_POST["pace"];
 
-        $runsRepository->saveRun(new DailyRun($creator_id, $start_point, $time, $distance, $pace));
+        $this->runsRepository->saveRun(new DailyRun($creator_id, $start_point, $time, $distance, $pace));
 
         self::mainpage();
     }

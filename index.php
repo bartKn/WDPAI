@@ -9,7 +9,7 @@ Routing::get('', 'DefaultController');
 Routing::post('login', 'SecurityController');
 Routing::get('logout', 'DefaultController');
 Routing::post('signup', 'SecurityController');
-Routing::get('calendar', 'DefaultController');
+Routing::get('calendar', 'CalendarController');
 Routing::get('event', 'DefaultController');
 Routing::get('profile', 'ProfileController');
 Routing::get('team', 'TeamController');

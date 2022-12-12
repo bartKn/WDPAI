@@ -85,9 +85,9 @@
                     <div class="input-container">
                         <label for="type">Type of surface:</label>
                         <select id="type" name="surfaceType">
-                            <option value="trail">Trail</option>
-                            <option value="asphalt">Asphalt</option>
-                            <option value="mixed">Mixed</option>
+                            <option value="Trail">Trail</option>
+                            <option value="Asphalt">Asphalt</option>
+                            <option value="Mixed">Mixed</option>
                         </select>
                     </div>
                     <div class="input-container">
