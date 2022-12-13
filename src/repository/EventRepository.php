@@ -43,6 +43,36 @@ class EventRepository extends Repository
 
     public function getEventsInMonth(string $date): array
     {
-        return array();
+        $stmt = $this->database->connect()->prepare("SELECT events.event_name, events.date, events.location,
+            events.distance, event_types.type_name, events.signed_participants, events.total_participants, teams.name
+            FROM events
+            JOIN teams
+            ON teams.id = events.team_id
+            JOIN event_types
+            ON events.type_id = event_types.id
+            WHERE to_char(events.date, 'YYYY/MM') = :date
+            ORDER BY events.date;");
+
+        $stmt->bindParam(':date', $date);
+
+        $stmt->execute();
+
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $eventDays = array();
+
+        for ($i = 0; $i < 31; $i++)
+        {
+            $eventDays[] = array();
+        }
+
+        foreach ($events as $event)
+        {
+            $day = substr($event['date'], 8, 2);
+            $eventDays[$day][] = new Event($event['event_name'], $event['date'], $event['location'], $event['type_name'],
+                $event['distance'], $event['signed_participants'], $event['total_participants'], $event['name']);
+        }
+
+        return $eventDays;
     }
 }

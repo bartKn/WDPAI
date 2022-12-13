@@ -11,6 +11,7 @@ class EventController extends AppController
     const MAX_FILE_SIZE = 1024*1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpg', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/events/';
+    const TRACK_PATH = '/public/uploads/events/';
 
     private $messages = [];
     private $eventRepository;
@@ -44,7 +45,7 @@ class EventController extends AppController
             $event->setType($_POST['surfaceType']);
             $event->setDistance($_POST['distance']);
             $event->setTotalParticipants($_POST['participants']);
-            $event->setTrackPath(self::UPLOAD_DIRECTORY.$_FILES['file']['name']);
+            $event->setTrackPath(self::TRACK_PATH.$_FILES['file']['name']);
 
             $this->eventRepository->saveEvent($event);
 

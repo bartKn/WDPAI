@@ -12,9 +12,28 @@ class Event
     private $total_participants;
     private $signed_participants;
     private $track_path;
+    private $team_name;
 
-    public function __construct()
+    /**
+     * @param $event_name
+     * @param $date
+     * @param $location
+     * @param $type
+     * @param $distance
+     * @param $total_participants
+     * @param $signed_participants
+     * @param $team_name
+     */
+    public function __construct($event_name, $date, $location, $type, $distance, $total_participants, $signed_participants, $team_name)
     {
+        $this->event_name = $event_name;
+        $this->date = $date;
+        $this->location = $location;
+        $this->type = $type;
+        $this->distance = $distance;
+        $this->total_participants = $total_participants;
+        $this->signed_participants = $signed_participants;
+        $this->team_name = $team_name;
     }
 
 
@@ -111,5 +130,15 @@ class Event
     public function getTrackPath(): string
     {
         return $this->track_path;
+    }
+
+    public function getTeamName()
+    {
+        return $this->team_name;
+    }
+
+    public function setTeamName($team_name)
+    {
+        $this->team_name = $team_name;
     }
 }

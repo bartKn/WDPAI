@@ -54,9 +54,14 @@ class CalendarController extends AppController
 
         $monthLen = $this->days_in_month($month, $year);
 
+
         for ($i = 1; $i <= $monthLen; $i++)
         {
-            $days[] = ['class' => "class=\"day\"", 'dayNumber' => $i];
+            if ($events[$i]) {
+                $days[] = ['class' => "class=\"day event-day\"", 'dayNumber' => $i, 'events' => $events[$i]];
+            } else {
+                $days[] = ['class' => "class=\"day\"", 'dayNumber' => $i];
+            }
         }
 
         $this->render('calendar', ['days' => $days, 'date' => date('F o', strtotime($date))]);

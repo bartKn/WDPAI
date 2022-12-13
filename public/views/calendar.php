@@ -79,11 +79,17 @@
                     {
                         echo '<div ' .$day['class'] .'>';
                         echo '<ul class="events web-events">';
-//                        <li>
-//                            <a href="event">
-//                        Event1 name
-//                    </a>
-//                        </li>
+                        if (array_key_exists('events', $day))
+                        {
+                            foreach ($day['events'] as $event)
+                            {
+                                echo '<li>';
+                                echo '<a href="event">';
+                                echo $event->getEventName();
+                                echo '</a>';
+                                echo '</li>';
+                            }
+                        }
                         echo '</ul>';
                         echo '<p class="day-number">';
                         echo $day['dayNumber'];
