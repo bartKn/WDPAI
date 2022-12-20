@@ -24,6 +24,13 @@ class EventController extends AppController
         $this->userRepository = new UserRepository();
     }
 
+    public function event()
+    {
+        $eventId = $_GET['id'];
+        $event = $this->eventRepository->getEventWithId($eventId);
+        $this->render('event', ['event' => $event]);
+    }
+
 
     public function addEvent()
     {
@@ -34,17 +41,18 @@ class EventController extends AppController
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
 
-            //{ ["eventName"]=> string(8) "TestName" ["eventDate"]=> string(10) "2022-12-16"
-            // ["eventTime"]=> string(0) "" ["eventLocation"]=> string(4) "Test" ["surfaceType"]=> string(7) "asphalt"
-            // ["distance"]=> string(2) "89" ["participants"]=> string(2) "47" }
-            $event = new Event();
+            $event = new Event(
+                0,
+                $_POST['eventName'],
+                $_POST['eventDate'] .' ' .$_POST['eventTime'],
+                $_POST['eventLocation'],
+                $_POST['surfaceType'],
+                $_POST['distance'],
+                $_POST['participants'],
+                0,
+                ''
+            );
             $event->setTeamId($this->userRepository->getTeamId($_COOKIE['user']));
-            $event->setEventName($_POST['eventName']);
-            $event->setDate($_POST['eventDate'] .' ' .$_POST['eventTime']);
-            $event->setLocation($_POST['eventLocation']);
-            $event->setType($_POST['surfaceType']);
-            $event->setDistance($_POST['distance']);
-            $event->setTotalParticipants($_POST['participants']);
             $event->setTrackPath(self::TRACK_PATH.$_FILES['file']['name']);
 
             $this->eventRepository->saveEvent($event);

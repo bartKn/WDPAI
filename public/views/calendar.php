@@ -72,32 +72,22 @@
                 <div class="cell">Fri.</div>
                 <div class="cell">Sat.</div>
                 <div class="cell">Sun.</div>
-                <?php
-                if (isset($days))
-                {
-                    foreach ($days as $day)
-                    {
-                        echo '<div ' .$day['class'] .'>';
-                        echo '<ul class="events web-events">';
-                        if (array_key_exists('events', $day))
-                        {
-                            foreach ($day['events'] as $event)
-                            {
-                                echo '<li>';
-                                echo '<a href="event">';
-                                echo $event->getEventName();
-                                echo '</a>';
-                                echo '</li>';
-                            }
-                        }
-                        echo '</ul>';
-                        echo '<p class="day-number">';
-                        echo $day['dayNumber'];
-                        echo '</p>';
-                        echo '</div>';
-                    }
-                }
-                ?>
+                <?php if (isset($days)) foreach ($days as $day): ?>
+                    <div <?= ' '.$day['class']?>>
+                        <ul class="events web-events">
+                            <?php if (array_key_exists('events', $day)) foreach ($day['events'] as $event): ?>
+                                <li>
+                                    <a href="event?id=<?= $event->getId() ?>">
+                                        <?= $event->getEventName()?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <p class="day-number">
+                            <?= $day['dayNumber']?>
+                        </p>
+                    </div>
+                <?php endforeach; ?>
             </div>
             <div class="mobile-events">
                 <ul class="events">

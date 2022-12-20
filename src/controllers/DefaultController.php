@@ -14,6 +14,7 @@ class DefaultController extends AppController {
     }
 
     public function event() {
+        var_dump($_GET);
         $this->render('event');
     }
 

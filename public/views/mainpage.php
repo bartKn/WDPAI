@@ -40,23 +40,17 @@
             <section class="items">
                 <div class="items-container">
                     <h1>Today's<br>runs</h1>
-                    <?php
-                    if (isset($runs))
-                    {
-                        foreach ($runs as $run)
-                        {
-                            echo '<a href="#">';
-                            echo '<div class="item">';
-                            echo '<p>' .$run["name"]. ' ' .$run["surname"].'</p>';
-                            echo '<p>' .$run["start_point"]. '</p>';
-                            echo '<p>' .$run["time"]. '</p>';
-                            echo '<p>' .$run["distance"]. '</p>';
-                            echo '<p>' .$run["pace"]. '</p>';
-                            echo '</div>';
-                            echo '</a>';
-                        }
-                    }
-                    ?>
+                    <?php if (isset($runs)) foreach ($runs as $run): ?>
+                        <a href="#">
+                            <div class="item">
+                                <p> <?= $run['name'] .' ' .$run['surname']?></p>
+                                <p> <?= $run['start_point'] ?></p>
+                                <p> <?= $run['time'] ?></p>
+                                <p> <?= $run['distance'] ?></p>
+                                <p> <?= $run['pace'] ?></p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </section>
             <div class="separator"></div>

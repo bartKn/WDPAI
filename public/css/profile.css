@@ -70,6 +70,12 @@ p {
     padding-bottom: 1em;
 }
 
+.pic-change {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
 @media only screen and (max-device-width: 420px) {
 
     .stats {

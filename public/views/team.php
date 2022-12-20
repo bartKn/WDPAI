@@ -42,20 +42,14 @@
             <section class="items">
                 <div class="members-container items-container">
                     <h1>members</h1>
-                    <?php
-                    if (isset($members))
-                    {
-                        foreach ($members as $member)
-                        {
-                            echo '<a href="profile">';
-                            echo '<div class="item">';
-                            echo '<p>' .$member["name"] .' ' .$member["surname"] .'</p>';
-                            echo '<p>' .$member["email"] .'</p> ';
-                            echo '</div>';
-                            echo '</a>';
-                        }
-                    }
-                    ?>
+                    <?php if (isset($members)) foreach ($members as $member): ?>
+                        <a href="profile">
+                            <div class="item">
+                                <p><?= $member->getName() .' ' .$member->getSurname()?></p>
+                                <p><?= $member->getEmail()?></p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
                 <section class="buttons">
                     <button class="add-button member-button" type="button" onclick="leaveTeam()">

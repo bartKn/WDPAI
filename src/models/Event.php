@@ -14,18 +14,9 @@ class Event
     private $track_path;
     private $team_name;
 
-    /**
-     * @param $event_name
-     * @param $date
-     * @param $location
-     * @param $type
-     * @param $distance
-     * @param $total_participants
-     * @param $signed_participants
-     * @param $team_name
-     */
-    public function __construct($event_name, $date, $location, $type, $distance, $total_participants, $signed_participants, $team_name)
+    public function __construct($id, $event_name, $date, $location, $type, $distance, $total_participants, $signed_participants, $team_name)
     {
+        $this->id = $id;
         $this->event_name = $event_name;
         $this->date = $date;
         $this->location = $location;

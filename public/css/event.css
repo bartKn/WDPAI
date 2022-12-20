@@ -71,6 +71,14 @@ select {
     background-color: #F9FBE7;
 }
 
+.stats-param {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
 @media only screen and (max-device-width: 420px) {
 
     .event {

@@ -86,18 +86,35 @@
             <div class="separator"></div>
             <section class="account">
                 <h1>account<br>details</h1>
-                <img class="profile-pic" src="/public/img/profile-pic.jpg">
-                <div class="details">
+                <?php if (isset($user_details)) { ?>
+                    <img class="profile-pic" src=" <?= $user_details['photo'] ?>">
+                    <div class="details">
+                        <label id="name"> <?= $user_details['name'] .' ' .$user_details['surname']?> </label>
+                        <label id="team"> <?= $user_details['teamName'] ?> </label>
+                        <label id="email"> <?= $user_details['email'] ?> </label>
+                        <label id="location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Location
+                        </label>
+                    </div>
+                <?php }?>
+                <form class="pic-change" action="updateProfilePic" method="POST" ENCTYPE="multipart/form-data">
+                    <div class="input-container">
+                        <label for="file">Profile pic:</label>
+                        <input class="event-input" type="file" id="file" name="file">
+                    </div>
+                    <button class="add-button" type="submit">
+                        Update picture!
+                    </button>
+                </form>
+                <div class="messages">
                     <?php
-                    if (isset($user_details))
+                    if (isset($messages))
                     {
-                        echo '<label id="name">'.$user_details['name'].' '.$user_details['surname'].'</label>';
-                        echo '<label id="team">' .$user_details['teamName'] .'</label>';
-                        echo '<label id="email">'.$user_details['email'].'</label>';
-                        echo '<label id="location">
-                                <i class="fa-solid fa-location-dot"></i>
-                                    Location
-                              </label>';
+                        foreach ($messages as $message)
+                        {
+                            echo $message;
+                        }
                     }
                     ?>
                 </div>

@@ -49,6 +49,38 @@ class UserRepository extends Repository
         }
     }
 
+    public function saveUserPicture(int $userId, string $path): bool
+    {
+       $stmt = $this->database->connect()->prepare('UPDATE user_info SET photo_path = :path WHERE user_id = :id;');
+       $stmt->bindValue(':path', $path);
+       $stmt->bindValue(':id', $userId);
+
+        try {
+            $stmt->execute();
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
+
+    public function getUserInfo(int $userId)
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT team_id, photo_path FROM user_info WHERE user_id = :id
+        ');
+
+        $stmt->bindValue(':id', $userId);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result['team_id']) {
+            $result['team_id'] = 0;
+        }
+
+        return $result;
+    }
+
     public function getUserId(string $email): int
     {
         $stmt = $this->database->connect()->prepare('
@@ -92,6 +124,18 @@ class UserRepository extends Repository
 
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $result = [];
+
+        foreach ($members as $member) {
+            $result[] =  new User(
+                $member['name'],
+                $member['surname'],
+                $member['email'],
+                ''
+            );
+        }
+        return $result;
     }
 }

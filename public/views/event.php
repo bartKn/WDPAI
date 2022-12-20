@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="/public/css/global-main.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/team.css">
     <link rel="stylesheet" type="text/css" href="/public/css/profile.css">
     <link rel="stylesheet" type="text/css" href="/public/css/event.css">
 
@@ -39,25 +39,27 @@
         </nav>
         <main>
             <section class="event">
-                <h1>Event name</h1>
-                <div class="stats-container">
-                    <div class="labels">
-                        Date:<br>
-                        Start location:<br>
-                        Distance:<br>
-                        Type:<br>
-                        Participants<br>
-                        Organized by:
+                <?php if (isset($event)) {?>
+                    <h1><?= $event->getEventName()?></h1>
+                    <div class="stats-container">
+                        <div class="labels">
+                            Date:<br>
+                            Start location:<br>
+                            Distance:<br>
+                            Type:<br>
+                            Participants<br>
+                            Organized by:
+                        </div>
+                        <div class="values">
+                            <?= $event->getDate() ?><br>
+                            <?= $event->getLocation() ?><br>
+                            <?= $event->getDistance() ?> Km<br>
+                            <?= $event->getType() ?><br>
+                            <?= $event->getSignedParticipants() ?>/<?= $event->getTotalParticipants() ?><br>
+                            <?= $event->getTeamName() ?>
+                        </div>
                     </div>
-                    <div class="values">
-                        13.11.2022 08:00<br>
-                        Wolski forest<br>
-                        10 Km<br>
-                        Trail run<br>
-                        72/100<br>
-                        Team name
-                    </div>
-                </div>
+                <?php } ?>
                 <img class="map-img" src="/public/img/gpsTrack.png">
                 <button>Download GPS track</button>
                 <button>Sign up for event!</button>
