@@ -98,15 +98,17 @@
                         </label>
                     </div>
                 <?php }?>
-                <form class="pic-change" action="updateProfilePic" method="POST" ENCTYPE="multipart/form-data">
-                    <div class="input-container">
-                        <label for="file">Profile pic:</label>
-                        <input class="event-input" type="file" id="file" name="file">
-                    </div>
-                    <button class="add-button" type="submit">
-                        Update picture!
-                    </button>
-                </form>
+                <?php if ($_COOKIE['user'] === $user_details['email']) { ?>
+                    <form class="pic-change" action="updateProfilePic" method="POST" ENCTYPE="multipart/form-data">
+                        <div class="input-container">
+                            <label for="file">Profile pic:</label>
+                            <input class="event-input" type="file" id="file" name="file">
+                        </div>
+                        <button class="add-button" type="submit">
+                            Update picture!
+                        </button>
+                    </form>
+                <?php } ?>
                 <div class="messages">
                     <?php
                     if (isset($messages))

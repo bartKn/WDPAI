@@ -2,10 +2,12 @@
 
 class User
 {
+    private $id;
     private $name;
     private $surname;
     private $email;
     private $password;
+    private $team;
 
     public function __construct(string $name, string $surname, string $email, string $password)
     {
@@ -13,6 +15,26 @@ class User
         $this->surname = $surname;
         $this->email = $email;
         $this->password = $password;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    public function getTeam(): string
+    {
+        return $this->team;
+    }
+
+    public function setTeam(string $team)
+    {
+        $this->team = $team;
     }
 
     public function getEmail(): string

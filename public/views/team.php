@@ -52,10 +52,12 @@
                     <?php endforeach; ?>
                 </div>
                 <section class="buttons">
-                    <button class="add-button member-button" type="button" onclick="leaveTeam()">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        Leave team
-                    </button>
+                    <?php if (isset($id) && $_COOKIE['teamId'] === $id) { ?>
+                        <button class="add-button member-button" type="button" onclick="leaveTeam()">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Leave team
+                        </button>
+                    <?php } ?>
                 </section>
             </section>
             

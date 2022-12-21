@@ -28,7 +28,8 @@ class EventController extends AppController
     {
         $eventId = $_GET['id'];
         $event = $this->eventRepository->getEventWithId($eventId);
-        $this->render('event', ['event' => $event]);
+        $participants = $this->userRepository->getParticipantsOfEvent($eventId);
+        $this->render('event', ['event' => $event, 'participants' => $participants]);
     }
 
 

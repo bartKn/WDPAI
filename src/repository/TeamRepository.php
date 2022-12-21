@@ -37,4 +37,17 @@ class TeamRepository extends Repository
 
         return '';
     }
+
+    public function getTeamId(string $teamName): int
+    {
+        $stmt = $this->database->connect()->prepare('SELECT teams.id FROM teams
+            WHERE teams.name = :team_name;');
+
+        $stmt->bindParam(':team_name', $teamName);
+        $stmt->execute();
+
+        $teamId = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $teamId['id'];
+    }
 }

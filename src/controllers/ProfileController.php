@@ -25,7 +25,12 @@ class ProfileController extends AppController
 
     public function profile()
     {
-        $user = $this->userRepository->getUser($_COOKIE["user"]);
+        if (isset($_GET['id'])) {
+            $user = $this->userRepository->getUserById($_GET['id']);
+        } else {
+            $user = $this->userRepository->getUserByEmail($_COOKIE["user"]);
+        }
+
         $userInfo = $this->userRepository->getUserInfo($this->userRepository->getUserId($user->getEmail()));
         $teamName = $this->teamRepository->getNameOfTeamWithId($userInfo['team_id']);
 

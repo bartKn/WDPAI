@@ -19,7 +19,7 @@ class SecurityController extends AppController
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $user = $userRepository->getUser($email);
+        $user = $userRepository->getUserByEmail($email);
 
         if (!$user)
         {
@@ -30,6 +30,9 @@ class SecurityController extends AppController
         {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
+
+        $teamId = $userRepository->getTeamId($email);
+        setcookie("teamId", $teamId, time() + 3600, '/');
         setcookie("user", $email, time() + 3600, '/');
         
         $mainpage = new DailyRunsController();

@@ -56,7 +56,7 @@
                             <?= $event->getDistance() ?> Km<br>
                             <?= $event->getType() ?><br>
                             <?= $event->getSignedParticipants() ?>/<?= $event->getTotalParticipants() ?><br>
-                            <?= $event->getTeamName() ?>
+                            <a href="team?n=<?= $event->getTeamName() ?>"><?= $event->getTeamName() ?></a>
                         </div>
                     </div>
                 <?php } ?>
@@ -74,60 +74,14 @@
                     </select>
                 </form>
                 <div class="participants-container">
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
-                    <a href="profile">
-                        <div class="participant">
-                            <p>Name Surname</p>
-                            <p>Team Name</p>
-                        </div>
-                    </a>
+                    <?php if (isset($participants)) foreach ($participants as $participant): ?>
+                        <a href="profile?id=<?= $participant->getId()?>">
+                            <div class="participant">
+                                <p> <?= $participant->getName() .' ' .$participant->getSurname()?> </p>
+                                <p> <?= $participant->getTeam()?> </p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </main>

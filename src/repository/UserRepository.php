@@ -6,7 +6,7 @@ require_once __DIR__.'/../models/User.php';
 
 class UserRepository extends Repository
 {
-    public function getUser(string $email)
+    public function getUserByEmail(string $email)
     {
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM users WHERE email = :email
@@ -28,6 +28,28 @@ class UserRepository extends Repository
             $user['password']);
     }
 
+    public function getUserById(int $id)
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM users WHERE id = :id;');
+
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            return null;
+        }
+
+        return new User(
+            $user['name'],
+            $user['surname'],
+            $user['email'],
+            $user['password']);
+    }
+
+
     public function saveUser(User $user): bool
     {
         $stmt = $this->database->connect()->prepare('INSERT INTO users(name, surname, email, password) VALUES (
@@ -42,6 +64,14 @@ class UserRepository extends Repository
         $stmt->bindValue(':password', password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
         try {
+            $stmt->execute();
+
+            $stmt = $this->database->connect()->prepare('SELECT last_value FROM users_id_seq;');
+            $stmt->execute();
+            $id = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt = $this->database->connect()->prepare('INSERT INTO user_info(user_id) VALUES (:id);');
+
+            $stmt->bindValue(':id', $id['last_value']);
             $stmt->execute();
             return true;
         } catch (PDOException $ex) {
@@ -106,7 +136,7 @@ class UserRepository extends Repository
 
         $team_id = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$team_id) {
+        if (!$team_id['team_id']) {
            return 0;
         }
 
@@ -135,6 +165,38 @@ class UserRepository extends Repository
                 $member['email'],
                 ''
             );
+        }
+        return $result;
+    }
+
+    public function getParticipantsOfEvent($eventId): array
+    {
+        $stmt = $this->database->connect()->prepare("SELECT users.id, users.name, users.surname, teams.name AS team_name FROM users
+                JOIN user_info
+                ON user_info.user_id = users.id
+                JOIN teams
+                ON teams.id = user_info.team_id
+                WHERE users.id IN (
+                    SELECT user_id FROM event_participants WHERE event_id = :eventId);");
+
+        $stmt->bindParam(':eventId', $eventId);
+
+        $stmt->execute();
+
+        $participants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $result = [];
+
+        foreach ($participants as $participant) {
+            $user = new User(
+                $participant['name'],
+                $participant['surname'],
+                '',
+                ''
+            );
+            $user->setId($participant['id']);
+            $user->setTeam($participant['team_name']);
+            $result[] =  $user;
         }
         return $result;
     }
