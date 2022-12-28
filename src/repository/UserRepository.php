@@ -145,7 +145,7 @@ class UserRepository extends Repository
 
     public function getMembersOfTeam(int $teamId): array
     {
-        $stmt = $this->database->connect()->prepare("SELECT users.name, users.surname, users.email FROM users
+        $stmt = $this->database->connect()->prepare("SELECT users.id, users.name, users.surname, users.email FROM users
             JOIN user_info
             ON user_info.user_id = users.id
             WHERE user_info.team_id = :teamId");
@@ -159,22 +159,24 @@ class UserRepository extends Repository
         $result = [];
 
         foreach ($members as $member) {
-            $result[] =  new User(
+            $user =  new User(
                 $member['name'],
                 $member['surname'],
                 $member['email'],
                 ''
             );
+            $user->setId($member['id']);
+            $result[] = $user;
         }
         return $result;
     }
 
     public function getParticipantsOfEvent($eventId): array
     {
-        $stmt = $this->database->connect()->prepare("SELECT users.id, users.name, users.surname, teams.name AS team_name FROM users
+        $stmt = $this->database->connect()->prepare("SELECT users.id, users.email, users.name, users.surname, teams.name AS team_name FROM users
                 JOIN user_info
                 ON user_info.user_id = users.id
-                JOIN teams
+                LEFT JOIN teams
                 ON teams.id = user_info.team_id
                 WHERE users.id IN (
                     SELECT user_id FROM event_participants WHERE event_id = :eventId);");
@@ -191,13 +193,47 @@ class UserRepository extends Repository
             $user = new User(
                 $participant['name'],
                 $participant['surname'],
-                '',
+                $participant['email'],
                 ''
             );
             $user->setId($participant['id']);
-            $user->setTeam($participant['team_name']);
+            $participant['team_name'] ? $user->setTeam($participant['team_name']) : $user->setTeam('-');
+
             $result[] =  $user;
         }
         return $result;
     }
+
+    public function signUpParticipantForEvent(int $eventId, int $userId): bool
+    {
+        $stmt = $this->database->connect()->prepare('SELECT "signupforevent"(:eventId, :userId);');
+
+        $stmt->bindValue(':eventId', $eventId);
+        $stmt->bindValue(':userId', $userId);
+
+        try {
+            $stmt->execute();
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
+
+    public function leaveTeam(int $userId)
+    {
+        $stmt = $this->database->connect()->prepare("UPDATE user_info SET team_id = 0 WHERE user_id = :userId;");
+
+        $stmt->bindValue(':userId', $userId);
+        $stmt->execute();
+    }
+
+    public function joinTeam(int $teamId, int $userId)
+    {
+        $stmt = $this->database->connect()->prepare("UPDATE user_info SET team_id = :teamId WHERE user_id = :userId;");
+
+        $stmt->bindValue(':teamId', $teamId);
+        $stmt->bindValue(':userId', $userId);
+        $stmt->execute();
+    }
+
 }

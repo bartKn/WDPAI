@@ -29,7 +29,7 @@ body {
 }
 
 .signup {
-    height: 70vh;
+    height: 85vh;
 }
 
 .signup > input {
@@ -119,6 +119,10 @@ button {
 a {
     color: inherit;
     font-size: inherit;
+}
+
+.disabled-button {
+    background-color: #D4CECEFF;
 }
 
 @media only screen and (max-device-width: 420px) {

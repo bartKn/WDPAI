@@ -17,6 +17,17 @@ class User
         $this->password = $password;
     }
 
+    public function jsonSerialize(): array
+    {
+        return [
+          'id' => $this->id,
+          'name' => $this->name,
+          'surname' => $this->surname,
+          'team' => $this->team,
+          'email' => $this->email
+        ];
+    }
+
     public function getId(): int
     {
         return $this->id;

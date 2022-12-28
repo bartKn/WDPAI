@@ -1,3 +1,0 @@
-function leaveTeam() {
-    alert('test');
-}

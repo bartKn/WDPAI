@@ -32,7 +32,6 @@ class EventController extends AppController
         $this->render('event', ['event' => $event, 'participants' => $participants]);
     }
 
-
     public function addEvent()
     {
         if ($this->isPost() && $this->validate())
@@ -63,6 +62,29 @@ class EventController extends AppController
             $teamController = new TeamController();
             $teamController->setMessages($this->messages);
             $teamController->team();
+        }
+    }
+
+    public function signupForEvent()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            $userId = $this->userRepository->getUserId($_COOKIE['user']);
+            $this->userRepository->signUpParticipantForEvent($decoded['eventId'], $userId);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $participants = $this->userRepository->getParticipantsOfEvent($decoded['eventId']);
+            $participantsArray = [];
+            foreach ($participants as $participant) {
+                $participantsArray[] = $participant->jsonSerialize();
+            }
+            echo json_encode($participantsArray);
         }
     }
 

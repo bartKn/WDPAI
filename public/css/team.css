@@ -41,8 +41,9 @@ button {
     background-color: rgb(212, 206, 206);
 }
 
-.disabled-button {
+button[disabled=disabled], button:disabled {
     background-color: rgb(212, 206, 206);
+    cursor: default;
 }
 
 .add-event {

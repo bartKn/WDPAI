@@ -4,46 +4,19 @@
     <link rel="stylesheet" type="text/css" href="/public/css/main.css">
     <link rel="stylesheet" type="text/css" href="/public/css/team.css">
 
-    <script type="text/javascript" src="/public/js/script.js"></script>
-
+    <script type="text/javascript" src="/public/js/teamActions.js" defer></script>
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>TEAM</title>
 </head>
 <body>
     <div class="base-container">
-        <nav>
-            <a href="mainpage">
-                <img src="/public/img/logo.svg">
-            </a>
-            <ul class="nav-list">
-                <li>
-                    <a href="team">
-                        <i class="fa-solid fa-users"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendar">
-                        <i class="fa-solid fa-calendar-days"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="profile">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="logout">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <?php include('navigation.php');?>
         <main>
             <section class="items">
                 <div class="members-container items-container">
                     <h1>members</h1>
                     <?php if (isset($members)) foreach ($members as $member): ?>
-                        <a href="profile">
+                        <a href="profile?id=<?= $member->getId()?>">
                             <div class="item">
                                 <p><?= $member->getName() .' ' .$member->getSurname()?></p>
                                 <p><?= $member->getEmail()?></p>
@@ -52,10 +25,15 @@
                     <?php endforeach; ?>
                 </div>
                 <section class="buttons">
-                    <?php if (isset($id) && $_COOKIE['teamId'] === $id) { ?>
-                        <button class="add-button member-button" type="button" onclick="leaveTeam()">
+                    <?php if ($_COOKIE['teamId'] == $id) { ?>
+                        <button id="leave-button" class="add-button member-button" type="button">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             Leave team
+                        </button>
+                    <?php } else { ?>
+                        <button id="join-button" class="add-button member-button" type="button">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Join team
                         </button>
                     <?php } ?>
                 </section>
@@ -120,3 +98,12 @@
         </main>
     </div>
 </body>
+
+<template id="members-template">
+    <a>
+        <div class="item">
+            <p id="member-name">name</p>
+            <p id="member-email">email</p>
+        </div>
+    </a>
+</template>

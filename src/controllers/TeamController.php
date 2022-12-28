@@ -38,6 +38,45 @@ class TeamController extends AppController
         }
     }
 
+    public function joinTeam()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $teamId = $this->teamRepository->getTeamId($decoded['teamName']);
+            $userId = $this->userRepository->getUserId($_COOKIE['user']);
+            $this->userRepository->joinTeam($teamId, $userId);
+            $members = $this->userRepository->getMembersOfTeam($teamId);
+
+            $membersArray = [];
+            foreach ($members as $member) {
+                $membersArray[] = $member->jsonSerialize();
+            }
+            echo json_encode($membersArray);
+        }
+    }
+
+    public function leaveTeam()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            $userId = $this->userRepository->getUserId($_COOKIE['user']);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+        }
+    }
+
     private function teamPage(int $teamId)
     {
         $members = $this->userRepository->getMembersOfTeam($teamId);
