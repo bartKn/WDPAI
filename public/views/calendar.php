@@ -33,7 +33,7 @@
                         <option value="12">December</option>
                     </select>
                     <select id="year" name="year">
-                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
                     </select>
                     <button class="load-button" type="submit">Load</button>
                 </form>
@@ -65,54 +65,20 @@
             </div>
             <div class="mobile-events">
                 <ul class="events">
-                    <li>
-                        <label class="day-number">1</label>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                    </li>
-                    <li>
-                        <label class="day-number">2</label>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                    </li>
-                    <li>
-                        <label class="day-number">5</label>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                    </li>
-                    <li>
-                        <label class="day-number">13</label>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                    </li>
-                    <li>
-                        <label class="day-number">24</label>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                        <a href="event">
-                            Event5 name
-                        </a>
-                    </li>
+                    <?php if (isset($days)) foreach ($days as $day): ?>
+                        <?php if (array_key_exists('events', $day)) { ?>
+                            <li>
+                                <label class="day-number">
+                                    <?= $day['dayNumber']?>
+                                </label>
+                                <?php if (array_key_exists('events', $day)) foreach ($day['events'] as $event): ?>
+                                    <a href="event?id=<?= $event->getId() ?>">
+                                        <?= $event->getEventName()?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </li>
+                        <?php } else {continue;} ?>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </main>

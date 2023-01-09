@@ -64,6 +64,7 @@ class CalendarController extends AppController
             }
         }
 
+        $date = substr_replace($date, "10", -2);
         $this->render('calendar', ['days' => $days, 'date' => date('F o', strtotime($date))]);
     }
 

@@ -40,41 +40,23 @@ class TeamController extends AppController
 
     public function joinTeam()
     {
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        $userId = $this->userRepository->getUserId($_COOKIE['user']);
+        $teamId = $_POST['teamId'];
 
-        if ($contentType === "application/json") {
-            $content = trim(file_get_contents("php://input"));
-            $decoded = json_decode($content, true);
+        $this->setCookieLive('teamId', $teamId, time() + 3600, '/');
+        $this->userRepository->joinTeam($teamId, $userId);
 
-            header('Content-type: application/json');
-            http_response_code(200);
 
-            $teamId = $this->teamRepository->getTeamId($decoded['teamName']);
-            $userId = $this->userRepository->getUserId($_COOKIE['user']);
-            $this->userRepository->joinTeam($teamId, $userId);
-            $members = $this->userRepository->getMembersOfTeam($teamId);
-
-            $membersArray = [];
-            foreach ($members as $member) {
-                $membersArray[] = $member->jsonSerialize();
-            }
-            echo json_encode($membersArray);
-        }
+        $this->teamPage($teamId);
     }
 
     public function leaveTeam()
     {
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        $userId = $this->userRepository->getUserId($_COOKIE['user']);
+        $this->userRepository->leaveTeam($userId);
+        setcookie("teamId", '0', time() - 7000000, '/');
 
-        if ($contentType === "application/json") {
-            $content = trim(file_get_contents("php://input"));
-            $decoded = json_decode($content, true);
-
-            $userId = $this->userRepository->getUserId($_COOKIE['user']);
-
-            header('Content-type: application/json');
-            http_response_code(200);
-        }
+        $this->teamListPage();
     }
 
     private function teamPage(int $teamId)
@@ -85,6 +67,7 @@ class TeamController extends AppController
 
     private function teamListPage()
     {
-        $this->render('team_list');
+        $teams = $this->teamRepository->getAllTeams();
+        $this->render('team_list', ['teams' => $teams]);
     }
 }

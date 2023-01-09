@@ -14,7 +14,7 @@ class Event
     private $track_path;
     private $team_name;
 
-    public function __construct($id, $event_name, $date, $location, $type, $distance, $total_participants, $signed_participants, $team_name)
+    public function __construct($id, $event_name, $date, $location, $type, $distance, $total_participants, $signed_participants, $team_name, $track_path)
     {
         $this->id = $id;
         $this->event_name = $event_name;
@@ -25,6 +25,7 @@ class Event
         $this->total_participants = $total_participants;
         $this->signed_participants = $signed_participants;
         $this->team_name = $team_name;
+        $this->track_path = $track_path;
     }
 
 

@@ -1,15 +1,11 @@
 const participantsContainer = document.querySelector('.participants-container');
 const button = document.querySelector('#signup');
 const signed = document.querySelector('#signed');
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
 
 button.addEventListener('click', function () {
     const data = {
-      eventId : urlParams.get('id')
+      eventId : id
     };
-
-    console.log(data);
 
     fetch("/signupForEvent", {
         method : "POST",

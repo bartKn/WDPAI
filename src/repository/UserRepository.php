@@ -221,7 +221,7 @@ class UserRepository extends Repository
 
     public function leaveTeam(int $userId)
     {
-        $stmt = $this->database->connect()->prepare("UPDATE user_info SET team_id = 0 WHERE user_id = :userId;");
+        $stmt = $this->database->connect()->prepare("UPDATE user_info SET team_id = null WHERE user_id = :userId;");
 
         $stmt->bindValue(':userId', $userId);
         $stmt->execute();

@@ -34,4 +34,10 @@ class AppController
 
         print $output;
     }
+
+    protected function setCookieLive($name, $value='', $expire = 0, $path = ''): bool
+    {
+        $_COOKIE[$name] = $value;
+        return setcookie($name, $value, $expire, $path);
+    }
 }

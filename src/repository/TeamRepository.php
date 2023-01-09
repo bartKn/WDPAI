@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Repository.php';
+require_once __DIR__.'/../models/Team.php';
 
 class TeamRepository extends Repository
 {
@@ -49,5 +50,22 @@ class TeamRepository extends Repository
         $teamId = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $teamId['id'];
+    }
+
+    public function getAllTeams(): array
+    {
+        $stmt = $this->database->connect()->prepare('SELECT name, id FROM teams');
+
+        $stmt->execute();
+
+        $result = [];
+
+        $teams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($teams as $team) {
+            $result[] = new Team($team['name'], $team['id']);
+        }
+
+        return $result;
     }
 }

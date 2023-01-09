@@ -32,8 +32,9 @@ class SecurityController extends AppController
         }
 
         $teamId = $userRepository->getTeamId($email);
-        setcookie("teamId", $teamId, time() + 3600, '/');
-        setcookie("user", $email, time() + 3600, '/');
+
+        $this->setCookieLive("teamId", $teamId, time() + 3600, '/');
+        $this->setCookieLive("user", $email, time() + 3600, '/');
         
         $mainpage = new DailyRunsController();
         return $mainpage->mainpage();

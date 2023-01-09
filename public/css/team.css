@@ -8,6 +8,7 @@
 
 .item > p {
     margin-bottom: 0.25em;
+    font-size: 100%;
 }
 
 button {
@@ -38,7 +39,6 @@ button {
 .member-button {
     height: 30%;
     width: 40%;
-    background-color: rgb(212, 206, 206);
 }
 
 button[disabled=disabled], button:disabled {
@@ -52,6 +52,10 @@ button[disabled=disabled], button:disabled {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.invisible {
+    visibility: hidden;
 }
 
 .add-event > h1 {
@@ -160,6 +164,38 @@ select {
     width: 50%;
     font-size: 150%;
     color: #000000;
+}
+
+.teams-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    margin-top: 1em;
+}
+
+.teams-container > .item {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.team-name {
+    font-size: 200%;
+    font-weight: 200;
+}
+
+.join-form {
+    width: 100%;
+    height: 100%;
+}
+
+.join-form > button {
+    width: 80%;
+    height: 50%;
 }
 
 @media only screen and (max-device-width: 420px) {

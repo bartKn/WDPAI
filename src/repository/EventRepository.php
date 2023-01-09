@@ -8,7 +8,7 @@ class EventRepository extends Repository
     public function getEventWithId(int $id): Event
     {
         $stmt = $this->database->connect()->prepare('SELECT events.id, events.event_name, events.date, events.location, et.type_name AS type, events.distance, 
-			events.total_participants, events.signed_participants, t."name"
+			events.total_participants, events.signed_participants, events.track_path, t."name"
 		FROM events
 			JOIN teams AS t
 				ON t.id = events.team_id
@@ -30,12 +30,13 @@ class EventRepository extends Repository
             $result['distance'],
             $result['total_participants'],
             $result['signed_participants'],
-            $result['name']
+            $result['name'],
+            $result['track_path']
         );
     }
 
 
-    public function saveEvent(Event $event): bool
+    public function saveEvent(Event $event): int
     {
         $stmt = $this->database->connect()->prepare('SELECT id FROM event_types WHERE type_name = :type;');
         $stmt->bindValue(':type', $event->getType());
@@ -52,7 +53,7 @@ class EventRepository extends Repository
                           :type_id,
                           :distance,
                           :total_participants,
-                          :track_path);');
+                          :track_path) RETURNING id');
 
         $stmt->bindValue(':team_id', $event->getTeamId());
         $stmt->bindValue(':event_name', $event->getEventName());
@@ -63,18 +64,15 @@ class EventRepository extends Repository
         $stmt->bindValue(':total_participants', $event->getTotalParticipants());
         $stmt->bindValue(':track_path', $event->getTrackPath());
 
-        try {
-            $stmt->execute();
-            return true;
-        } catch (PDOException $ex) {
-            return false;
-        }
+        $stmt->execute();
+        $id = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $id['id'];
     }
 
     public function getEventsInMonth(string $date): array
     {
         $stmt = $this->database->connect()->prepare("SELECT events.id, events.event_name, events.date, events.location,
-            events.distance, event_types.type_name, events.signed_participants, events.total_participants, teams.name
+            events.distance, event_types.type_name, events.signed_participants, events.total_participants, events.track_path, teams.name
             FROM events
             JOIN teams
             ON teams.id = events.team_id
@@ -98,9 +96,9 @@ class EventRepository extends Repository
 
         foreach ($events as $event)
         {
-            $day = substr($event['date'], 8, 2);
+            $day = ltrim(substr($event['date'], 8, 2), "0");
             $eventDays[$day][] = new Event($event['id'], $event['event_name'], $event['date'], $event['location'], $event['type_name'],
-                $event['distance'], $event['signed_participants'], $event['total_participants'], $event['name']);
+                $event['distance'], $event['signed_participants'], $event['total_participants'], $event['name'], $event['track_path']);
         }
 
         return $eventDays;

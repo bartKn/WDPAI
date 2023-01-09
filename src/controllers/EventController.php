@@ -29,7 +29,14 @@ class EventController extends AppController
         $eventId = $_GET['id'];
         $event = $this->eventRepository->getEventWithId($eventId);
         $participants = $this->userRepository->getParticipantsOfEvent($eventId);
-        $this->render('event', ['event' => $event, 'participants' => $participants]);
+        $this->render('event', ['event' => $event, 'id' => $eventId, 'participants' => $participants]);
+    }
+
+    public function eventWithId($id)
+    {
+        $event = $this->eventRepository->getEventWithId($id);
+        $participants = $this->userRepository->getParticipantsOfEvent($id);
+        $this->render('event', ['event' => $event, 'id' => $id, 'participants' => $participants]);
     }
 
     public function addEvent()
@@ -50,14 +57,14 @@ class EventController extends AppController
                 $_POST['distance'],
                 $_POST['participants'],
                 0,
-                ''
+                '',
+                self::TRACK_PATH.$_FILES['file']['name']
             );
             $event->setTeamId($this->userRepository->getTeamId($_COOKIE['user']));
-            $event->setTrackPath(self::TRACK_PATH.$_FILES['file']['name']);
 
-            $this->eventRepository->saveEvent($event);
+            $id = $this->eventRepository->saveEvent($event);
 
-            $this->render('event', ['messages' => $this->messages]);
+            $this->eventWithId($id);
         } else {
             $teamController = new TeamController();
             $teamController->setMessages($this->messages);

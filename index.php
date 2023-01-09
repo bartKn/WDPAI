@@ -25,6 +25,7 @@ Routing::post('addEvent', 'EventController');
 Routing::post('signupForEvent', 'EventController');
 
 Routing::post('addRun', 'DailyRunsController');
+Routing::post('signupForRun', 'DailyRunsController');
 Routing::get('mainpage', 'DailyRunsController');
 
 Routing::run($path);

@@ -83,9 +83,4 @@ class ProfileController extends AppController
 
         return true;
     }
-
-    private function renderGivenProfile($email)
-    {
-        echo $email;
-    }
 }

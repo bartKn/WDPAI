@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 <?php } ?>
-                <img class="map-img" src="/public/img/gpsTrack.png">
+                <img class="map-img" src="<?= $event->getTrackPath() ?>">
                 <button>Download GPS track</button>
                 <?php
                     $disabled = '';
@@ -75,6 +75,10 @@
         </main>
     </div>
 </body>
+
+<script>
+    let id = <?php if(isset($id)) echo json_encode($id); ?>;
+</script>
 
 <template id="participant-template">
     <a>

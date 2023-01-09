@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/team.css">
     <link rel="stylesheet" type="text/css" href="/public/css/global-main.css">
     <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+    <script type="text/javascript" src="/public/js/runSignup.js" defer></script>
 
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>MAIN PAGE</title>
@@ -12,18 +13,29 @@
         <?php include('navigation.php');?>
         <main>
             <section class="items">
+                <h1>Today's runs</h1>
                 <div class="items-container">
-                    <h1>Today's<br>runs</h1>
                     <?php if (isset($runs)) foreach ($runs as $run): ?>
-                        <a href="#">
+                        <a>
                             <div class="item">
                                 <p> <?= $run['name'] .' ' .$run['surname']?></p>
                                 <p> <?= $run['start_point'] ?></p>
                                 <p> <?= $run['time'] ?></p>
                                 <p> <?= $run['distance'] ?></p>
                                 <p> <?= $run['pace'] ?></p>
+                               <?php
+                                $disabled = '';
+                                if (isset($user) && in_array($user, $participants[$run['id']])) {
+                                    $disabled = 'disabled';
+                                }
+                                ?>
+                                <button <?= $disabled ?> name="<?php echo $run['id']?>" id="join-button" class="add-button member-button" type="submit">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    Take part!
+                                </button>
                             </div>
                         </a>
+
                     <?php endforeach; ?>
                 </div>
             </section>

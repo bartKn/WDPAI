@@ -25,22 +25,27 @@
                     <?php endforeach; ?>
                 </div>
                 <section class="buttons">
-                    <?php if ($_COOKIE['teamId'] == $id) { ?>
-                        <button id="leave-button" class="add-button member-button" type="button">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            Leave team
-                        </button>
+                    <?php if ($_COOKIE['teamId'] == $id || isset($joined)) { ?>
+                        <form action="leaveTeam" method="GET">
+                            <button id="leave-button" class="add-button member-button" type="submit">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Leave team
+                            </button>
+                        </form>
                     <?php } else { ?>
-                        <button id="join-button" class="add-button member-button" type="button">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            Join team
-                        </button>
+                        <form action="joinTeam" method="POST">
+                            <input type="hidden" name="teamId" value="<?php echo $id?>" />
+                            <button id="join-button" class="add-button member-button" type="submit">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Join team
+                            </button>
+                        </form>
                     <?php } ?>
                 </section>
             </section>
             
             <div class="separator"></div>
-            <div class="add-event">
+            <div class="add-event <?php if($_COOKIE['teamId'] != $id) echo ' invisible'?>">
                 <h1>add event</h1>
                 <form action="addEvent" method="POST" ENCTYPE="multipart/form-data">
                     <div class="input-container">
