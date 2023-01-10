@@ -15,14 +15,17 @@ Routing::get('calendar', 'CalendarController');
 
 Routing::get('profile', 'ProfileController');
 Routing::post('updateProfilePic', 'ProfileController');
+Routing::post('getStats', 'ProfileController');
 
 Routing::get('team', 'TeamController');
 Routing::get('joinTeam', 'TeamController');
 Routing::get('leaveTeam', 'TeamController');
 
 Routing::get('event', 'EventController');
+Routing::get('getEventParticipants', 'EventController');
 Routing::post('addEvent', 'EventController');
 Routing::post('signupForEvent', 'EventController');
+Routing::post('updateResults', 'EventController');
 
 Routing::post('addRun', 'DailyRunsController');
 Routing::post('signupForRun', 'DailyRunsController');

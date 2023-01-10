@@ -5,6 +5,7 @@ require_once 'TeamController.php';
 require_once __DIR__.'/../models/Event.php';
 require_once __DIR__.'/../repository/EventRepository.php';
 require_once __DIR__.'/../repository/UserRepository.php';
+require_once __DIR__.'/../repository/TeamRepository.php';
 
 class EventController extends AppController
 {
@@ -13,23 +14,34 @@ class EventController extends AppController
     const UPLOAD_DIRECTORY = '/../public/uploads/events/';
     const TRACK_PATH = '/public/uploads/events/';
 
+    const RESULTS_FILE_UPLOAD_DIRECTORY = '/../public/uploads/results/';
+    const RESULTS_FILE_PATH = '/public/uploads/results/';
+
     private $messages = [];
     private $eventRepository;
     private $userRepository;
+    private $teamRepository;
 
     public function __construct()
     {
         parent::__construct();
         $this->eventRepository = new EventRepository();
         $this->userRepository = new UserRepository();
+        $this->teamRepository = new TeamRepository();
     }
 
     public function event()
     {
         $eventId = $_GET['id'];
         $event = $this->eventRepository->getEventWithId($eventId);
+        $today = date("Y-m-d");
+        date("Y-m-d") > $event->getDate() ? $finished = true : $finished = false;
+
         $participants = $this->userRepository->getParticipantsOfEvent($eventId);
-        $this->render('event', ['event' => $event, 'id' => $eventId, 'participants' => $participants]);
+        $this->render('event', ['event' => $event,
+            'id' => $eventId,
+            'participants' => $participants,
+            'finished' => $finished]);
     }
 
     public function eventWithId($id)
@@ -114,6 +126,68 @@ class EventController extends AppController
         if (!isset($file['type']) || !in_array($file['type'], self::SUPPORTED_TYPES))
         {
             $this->messages[] = "Type is not supported!";
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getEventParticipants()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $teamName =  $this->teamRepository->getNameOfTeamWithId($_COOKIE['teamId']);
+
+            $participants = $this->userRepository->getParticipantsOfEvent($decoded['eventId']);
+            $participantsArray = [];
+            foreach ($participants as $participant) {
+                if ($decoded['participants'] == 'team') {
+                    if ($participant->getTeam() == $teamName) {
+                        $participantsArray[] = $participant->jsonSerialize();
+                    }
+                } else {
+                    $participantsArray[] = $participant->jsonSerialize();
+                }
+            }
+            echo json_encode($participantsArray);
+        }
+    }
+
+    public function updateResults()
+    {
+        move_uploaded_file(
+            $_FILES['file']['tmp_name'],
+            dirname(__DIR__).self::RESULTS_FILE_UPLOAD_DIRECTORY.$_FILES['file']['name']
+        );
+
+        $fileName = dirname(__DIR__).self::RESULTS_FILE_UPLOAD_DIRECTORY.$_FILES['file']['name'];
+
+        if (($open = fopen($fileName, "r")) !== FALSE)
+        {
+            echo 'otwarto';
+
+            fclose($open);
+        } else {
+            echo 'dupa';
+        }
+    }
+
+    private function validateCSV(): bool
+    {
+        if (!is_uploaded_file($_FILES['file']['tmp_name'])) {
+            return false;
+        }
+
+        $file = $_FILES['file'];
+
+        if (!isset($file['type']) || $file['type'] != 'text/csv') {
             return false;
         }
 

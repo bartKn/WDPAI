@@ -1,12 +1,14 @@
 const participantsContainer = document.querySelector('.participants-container');
 const button = document.querySelector('#signup');
 const signed = document.querySelector('#signed');
+const spinner = document.getElementById("spinner");
 
 button.addEventListener('click', function () {
     const data = {
       eventId : id
     };
 
+    spinner.removeAttribute('hidden');
     fetch("/signupForEvent", {
         method : "POST",
         headers: {
@@ -20,6 +22,7 @@ button.addEventListener('click', function () {
         disableButton();
         participantsContainer.innerHTML = "";
         loadParticipants(participants);
+        spinner.setAttribute('hidden', '');
     })
 });
 
@@ -50,4 +53,30 @@ function createParticipant(participant) {
 
     participantsContainer.appendChild(clone);
 }
+
+
+const select = document.querySelector('#participants-select');
+
+select.addEventListener('change', function () {
+
+    const data = {
+        participants : select.value,
+        eventId : id
+    };
+
+    spinner.removeAttribute('hidden');
+    fetch("/getEventParticipants", {
+        method : "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(function (response) {
+        return response.json();
+    }).then(function (participants) {
+        participantsContainer.innerHTML = "";
+        loadParticipants(participants);
+        spinner.setAttribute('hidden', '');
+    })
+})
 

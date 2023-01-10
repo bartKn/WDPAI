@@ -2,6 +2,19 @@
     width: 50%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.event > h1 {
+    align-self: flex-start;
+}
+
+.results-update > div {
+    height: 15%;
+}
+
+.results-update > button {
+    height: 15%;
 }
 
 .participants {
@@ -77,6 +90,15 @@ select {
     justify-content: center;
     align-items: center;
     height: 10%;
+}
+
+#spinner:not([hidden]) {
+    position: fixed;
+    top: 34%;
+    left: 73%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media only screen and (max-device-width: 420px) {

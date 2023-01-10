@@ -36,7 +36,7 @@ class TeamRepository extends Repository
             return $teamName["name"];
         }
 
-        return '';
+        return '-';
     }
 
     public function getTeamId(string $teamName): int

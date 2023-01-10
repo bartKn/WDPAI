@@ -31,10 +31,15 @@ class ProfileController extends AppController
             $user = $this->userRepository->getUserByEmail($_COOKIE["user"]);
         }
 
-        $userInfo = $this->userRepository->getUserInfo($this->userRepository->getUserId($user->getEmail()));
+        $userId = $this->userRepository->getUserId($user->getEmail());
+        $stats = $this->userRepository->getUserStats($userId, true);
+
+        $userInfo = $this->userRepository->getUserInfo($userId);
         $teamName = $this->teamRepository->getNameOfTeamWithId($userInfo['team_id']);
 
-        $this->render('profile', ['user_details' => ["name" => $user->getName(),
+        $this->render('profile', ['stats' => $stats, 'user_details' => [
+            "id" => $userId,
+            "name" => $user->getName(),
             "surname" => $user->getSurname(),
             "teamName" => $teamName,
             "email" => $user->getEmail(),
@@ -82,5 +87,24 @@ class ProfileController extends AppController
         }
 
         return true;
+    }
+
+    public function getStats()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            $userId = $decoded['id'];
+            $allTime = $decoded['period'] === 'all';
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $stats = $this->userRepository->getUserStats($userId, $allTime);
+            echo json_encode($stats->jsonSerialize());
+        }
     }
 }

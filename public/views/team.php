@@ -14,7 +14,7 @@
         <main>
             <section class="items">
                 <div class="members-container items-container">
-                    <h1>members</h1>
+                    <h1 class="members-banner">members</h1>
                     <?php if (isset($members)) foreach ($members as $member): ?>
                         <a href="profile?id=<?= $member->getId()?>">
                             <div class="item">

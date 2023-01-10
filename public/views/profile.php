@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/global-main.css">
     <link rel="stylesheet" type="text/css" href="/public/css/profile.css">
 
+    <script type="text/javascript" src="/public/js/stats.js" defer></script>
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>PROFILE</title>
 </head>
@@ -14,23 +15,10 @@
                 <h1>statistics</h1>
                 <form class="stats-param">
                     <select id="period" name="period">
-                        <option value="year">Year summary</option>
-                        <option value="month">Month summary</option>
+                        <option value="all">All time</option>
+                        <option value="month">Last month</option>
                     </select>
-                    <select id="period-value" name="period-value">
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
-                    </select>
+                    <div hidden id="spinner"></div>
                 </form>
                 <p>events</p>
                 <div class="stats-container">
@@ -39,10 +27,12 @@
                         Distance:<br>
                         Average position:
                     </div>
-                    <div class="values">
-                        7<br>
-                        123 Km<br>
-                        24
+                    <div class="values" id="event-stats">
+                    <?php if (isset($stats)) { ?>
+                        <label id="events-num"> <?= $stats->getEvents() ?> </label><br>
+                        <label id="events-distance"> <?= $stats->getEventsDistance() ?> Km</label><br>
+                        <label id="events-position"> <?= $stats->getEventsPosition() ?> </label>
+                    <?php } ?>
                     </div>
                 </div>
                 <p>daily runs</p>
@@ -51,9 +41,11 @@
                         Total:<br>
                         Distance:<br>
                     </div>
-                    <div class="values">
-                        7<br>
-                        123 Km<br>
+                    <div class="values" id="daily-stats">
+                        <?php if (isset($stats)) { ?>
+                            <label id="daily-num"> <?= $stats->getDailyRuns() ?> </label><br>
+                            <label id="daily-distance"> <?= $stats->getDailyRunsDistance() ?> Km</label>
+                        <?php } ?>
                     </div>
                 </div>
             </section>
@@ -98,3 +90,18 @@
         </main>
     </div>
 </body>
+
+<script>
+    let idValue = <?php echo $user_details['id']?>
+</script>
+
+<template id="event-stats-template">
+    <label id="events-num"></label><br>
+    <label id="events-distance"></label><br>
+    <label id="events-position"></label>
+</template>
+
+<template id="daily-stats-template">
+    <label id="daily-num"></label><br>
+    <label id="daily-distance"></label>
+</template>

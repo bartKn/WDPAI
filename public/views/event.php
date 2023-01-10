@@ -36,8 +36,19 @@
                     </div>
                 <?php } ?>
                 <img class="map-img" src="<?= $event->getTrackPath() ?>">
-                <button>Download GPS track</button>
-                <?php
+                <?php if (isset($finished) && $finished) { ?>
+                    <form class="results-update" action="updateResults" method="POST" ENCTYPE="multipart/form-data">
+                        <div class="input-container">
+                            <label for="file">CSV results file:</label>
+                            <input class="result-input" type="file" id="file" name="file">
+                        </div>
+                        <button class="add-button" type="submit">
+                            Send file!
+                        </button>
+                    </form>
+                <?php } else { ?>
+                    <button>Download GPS track</button>
+                    <?php
                     $disabled = '';
                     if ($event->getSignedParticipants() == $event->getTotalParticipants()) {
                         $disabled = 'disabled';
@@ -49,18 +60,20 @@
                             }
                         }
                     }
-                ?>
-                <button id="signup" <?php echo $disabled ?>>Sign up for event!</button>
+                    ?>
+                    <button id="signup" <?php echo $disabled ?>>Sign up for event!</button>
+                <?php } ?>
             </section>
             <div class="separator"></div>
             <div class="participants">
                 <h1>Participants</h1>
                 <form class="stats-param">
-                    <select id="participants" name="participants">
+                    <select id="participants-select" name="participants">
                         <option value="all">All</option>
                         <option value="team">My team</option>
                     </select>
                 </form>
+                <div hidden id="spinner"></div>
                 <div class="participants-container">
                     <?php if (isset($participants)) foreach ($participants as $participant): ?>
                         <a href="profile?id=<?= $participant->getId()?>">

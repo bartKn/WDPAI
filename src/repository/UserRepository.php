@@ -2,6 +2,7 @@
 
 require_once 'Repository.php';
 require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../models/Stats.php';
 
 
 class UserRepository extends Repository
@@ -234,6 +235,60 @@ class UserRepository extends Repository
         $stmt->bindValue(':teamId', $teamId);
         $stmt->bindValue(':userId', $userId);
         $stmt->execute();
+    }
+
+    private function getDailyRunsStats(int $userId, bool $allTime)
+    {
+        $sql = "SELECT SUM(split_part(distance, ' ', 1)::DECIMAL) AS distance, COUNT(*) AS runs
+                    FROM daily_runs_participants AS drp
+                    JOIN daily_runs AS dr
+                    ON dr.id = drp.run_id  
+                    WHERE user_id = :userId";
+
+        if ($allTime) {
+            $stmt = $this->database->connect()->prepare($sql);
+        } else {
+            $stmt = $this->database->connect()->prepare($sql." AND dr.date >= date_trunc('day', current_date - interval '30' day);");
+        }
+
+        $stmt->bindValue(':userId', $userId);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    private function getEventsStats(int $userId, bool $allTime)
+    {
+        $sql = "SELECT SUM(e.distance) AS distance, COUNT(*) AS events, ROUND(AVG(ep.finish_position)::numeric, 2) AS position 
+                FROM event_participants AS ep
+                JOIN events AS e
+                ON e.id = ep.event_id
+                WHERE ep.user_id = :userId AND ep.finish_position IS NOT NULL";
+
+        if ($allTime) {
+            $stmt = $this->database->connect()->prepare($sql);
+        } else {
+            $stmt = $this->database->connect()->prepare($sql." AND e.date >= date_trunc('day', current_date - interval '30' day);");
+        }
+
+        $stmt->bindValue(':userId', $userId);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserStats(int $userId, bool $allTime): Stats
+    {
+        $events = $this->getEventsStats($userId, $allTime);
+        $dailyRuns = $this->getDailyRunsStats($userId, $allTime);
+
+        return new Stats(
+            $events['events'] ?: '0',
+            $events['distance'] ?: '0',
+            $events['position'] ?: '0',
+            $dailyRuns['runs'] ?: '0',
+            $dailyRuns['distance'] ?: '0'
+        );
     }
 
 }
