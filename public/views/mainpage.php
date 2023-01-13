@@ -30,7 +30,7 @@
                                 }
                                 ?>
                                 <button <?= $disabled ?> name="<?php echo $run['id']?>" id="join-button" class="add-button member-button" type="submit">
-                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    <i class="fa-solid fa-plus"></i>
                                     Take part!
                                 </button>
                             </div>

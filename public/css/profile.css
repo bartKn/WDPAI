@@ -197,5 +197,14 @@ input::file-selector-button  {
         align-self: flex-start;
         margin-left: 1em;
     }
+
+    .input-container {
+        width: 90%;
+        font-size: 80%;
+    }
+
+    #spinner {
+        visibility: hidden;
+    }
 }
 
