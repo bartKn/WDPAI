@@ -23,9 +23,7 @@ class DefaultController extends AppController {
     }
 
     public function logout() {
-        setcookie("user", '', time() - 7000000, '/');
-        setcookie("teamId", '', time() - 7000000, '/');
-        $this->render('login');
+
     }
 
     public function profile() {

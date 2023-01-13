@@ -25,6 +25,7 @@ class ProfileController extends AppController
 
     public function profile()
     {
+        $this->extendCookies();
         if (isset($_GET['id'])) {
             $user = $this->userRepository->getUserById($_GET['id']);
         } else {
@@ -43,7 +44,9 @@ class ProfileController extends AppController
             "surname" => $user->getSurname(),
             "teamName" => $teamName,
             "email" => $user->getEmail(),
-            "photo" => $userInfo['photo_path']], 'messages' => $this->messages]);
+            "photo" => $userInfo['photo_path'],
+            "location" =>$userInfo['location']],
+            'messages' => $this->messages]);
     }
 
     public function updateProfilePic()
@@ -54,8 +57,6 @@ class ProfileController extends AppController
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
-
-            echo 'fileName: ' .$_FILES['file']['name'];
 
             $this->userRepository->saveUserPicture($this->userRepository->getUserId($_COOKIE["user"]),
                 self::TRACK_PATH.$_FILES['file']['name']);

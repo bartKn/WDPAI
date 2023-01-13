@@ -51,7 +51,7 @@ class UserRepository extends Repository
     }
 
 
-    public function saveUser(User $user): bool
+    public function saveUser(User $user, $location): bool
     {
         $stmt = $this->database->connect()->prepare('INSERT INTO users(name, surname, email, password) VALUES (
                           :name,
@@ -70,14 +70,45 @@ class UserRepository extends Repository
             $stmt = $this->database->connect()->prepare('SELECT last_value FROM users_id_seq;');
             $stmt->execute();
             $id = $stmt->fetch(PDO::FETCH_ASSOC);
-            $stmt = $this->database->connect()->prepare('INSERT INTO user_info(user_id) VALUES (:id);');
+            $stmt = $this->database->connect()->prepare('INSERT INTO user_info(user_id, location) VALUES (:id, :location);');
 
             $stmt->bindValue(':id', $id['last_value']);
+            $stmt->bindValue(':location', $location);
             $stmt->execute();
             return true;
         } catch (PDOException $ex) {
             return false;
         }
+    }
+
+    public function logIn(string $email)
+    {
+        $id = $this->getUserId($email);
+
+        $stmt = $this->database->connect()->prepare("SELECT logged_in, role FROM user_info WHERE user_id = :id");
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result['logged_in'] === FALSE) {
+            $stmt = $this->database->connect()->prepare("UPDATE user_info SET logged_in = true WHERE user_id = :id");
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+        } else {
+            return null;
+        }
+
+        return $result['role'];
+    }
+
+    public function logOut(string $email)
+    {
+        $id = $this->getUserId($email);
+
+        $stmt = $this->database->connect()->prepare("UPDATE user_info SET logged_in = false WHERE user_id = :id");
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
     }
 
     public function saveUserPicture(int $userId, string $path): bool
@@ -97,7 +128,7 @@ class UserRepository extends Repository
     public function getUserInfo(int $userId)
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT team_id, photo_path FROM user_info WHERE user_id = :id
+            SELECT team_id, photo_path, location FROM user_info WHERE user_id = :id
         ');
 
         $stmt->bindValue(':id', $userId);

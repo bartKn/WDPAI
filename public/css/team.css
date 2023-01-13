@@ -41,6 +41,10 @@ button {
     width: 40%;
 }
 
+form > #delete-button {
+    height: 40%;
+}
+
 button[disabled=disabled], button:disabled {
     background-color: rgb(212, 206, 206);
     cursor: default;
@@ -176,16 +180,23 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
+    width: 50%;
     height: 100%;
-    margin-top: 1em;
+    overflow: auto;
+}
+
+.teams-container > h1 {
+    font-size: 350%;
+    margin-left: 1em;
+    margin-top: 0.4em;
+    align-self: flex-start;
 }
 
 .teams-container > .item {
-    width: 25%;
+    width: 40%;
     display: flex;
     align-items: center;
-    margin-bottom: 3em;
+    margin-top: 3em;
 }
 
 .team-name {

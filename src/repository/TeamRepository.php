@@ -5,6 +5,15 @@ require_once __DIR__.'/../models/Team.php';
 
 class TeamRepository extends Repository
 {
+    public function addTeam(string $teamName)
+    {
+        $stmt = $this->database->connect()->prepare('INSERT INTO teams (name) VALUES (:teamName) RETURNING id;');
+        $stmt->bindParam(':teamName', $teamName);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['id'];
+    }
     public function getTeamNameOfUser(int $userId): string
     {
         $stmt = $this->database->connect()->prepare('SELECT teams.name FROM teams
@@ -67,5 +76,14 @@ class TeamRepository extends Repository
         }
 
         return $result;
+    }
+
+    public function deleteTeam(int $teamId)
+    {
+        $stmt = $this->database->connect()->prepare("DELETE FROM teams WHERE id = :teamId;");
+
+        $stmt->bindParam(':teamId', $teamId);
+
+        $stmt->execute();
     }
 }

@@ -19,6 +19,7 @@ class DailyRunsController extends AppController
 
     public function mainpage()
     {
+        $this->extendCookies();
         $runs = $this->runsRepository->getDailyRuns();
 
         $participants = array();

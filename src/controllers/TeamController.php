@@ -22,8 +22,21 @@ class TeamController extends AppController
         $this->teamRepository = new TeamRepository();
     }
 
+    public function addTeam()
+    {
+        $teamName = $_POST['teamName'];
+        $userId = $this->userRepository->getUserId($_COOKIE['user']);
+
+        $teamId = $this->teamRepository->addTeam($teamName);
+        $this->setCookieLive('teamId', $teamId, time() + 3600, '/');
+        $this->userRepository->joinTeam($teamId, $userId);
+
+        $this->teamPage($teamId);
+    }
+
     public function team()
     {
+        $this->extendCookies();
         if (isset($_GET['n'])) {
             $team_id = $this->teamRepository->getTeamId($_GET['n']);
         } else {
@@ -69,5 +82,24 @@ class TeamController extends AppController
     {
         $teams = $this->teamRepository->getAllTeams();
         $this->render('team_list', ['teams' => $teams]);
+    }
+
+    public function deleteTeam()
+    {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $teamId = $decoded['idToDelete'];
+
+            echo 'dupa';
+
+            $this->teamRepository->deleteTeam($teamId);
+        }
     }
 }

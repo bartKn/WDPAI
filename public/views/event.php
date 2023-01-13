@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/event.css">
 
     <script type="text/javascript" src="/public/js/eventSignup.js" defer></script>
+    <script type="text/javascript" src="/public/js/delete.js" defer></script>
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>EVENT</title>
 </head>
@@ -47,7 +48,11 @@
                         </button>
                     </form>
                 <?php } else { ?>
-                    <button>Download GPS track</button>
+                    <?php if ($_COOKIE['role'] === 'admin') { $disabled = 'disabled'; ?>
+                        <button id="delete-button" name="event">Delete event</button>
+                    <?php } else { ?>
+                        <button>Download GPS track</button>
+                    <?php } ?>
                     <?php
                     $disabled = '';
                     if ($event->getSignedParticipants() == $event->getTotalParticipants()) {
@@ -80,6 +85,9 @@
                             <div class="participant">
                                 <p id="participant-name"> <?= $participant->getName() .' ' .$participant->getSurname()?> </p>
                                 <p id="participant-team"> <?= $participant->getTeam()?> </p>
+                                <?php if (isset($finished) && isset($results)) { ?>
+                                    <p id="participant-position">Finish position: <?= $results[$participant->getId()] ?></p>
+                                <?php } ?>
                             </div>
                         </a>
                     <?php endforeach; ?>

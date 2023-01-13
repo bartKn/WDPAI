@@ -7,10 +7,16 @@ require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController
 {
+    private $userRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+    }
+
     public function login()
     {
-        $userRepository = new UserRepository();
-
         if (!$this->isPost())
         {
             return $this->render('login');
@@ -19,7 +25,7 @@ class SecurityController extends AppController
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $user = $userRepository->getUserByEmail($email);
+        $user = $this->userRepository->getUserByEmail($email);
 
         if (!$user)
         {
@@ -31,13 +37,28 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
-        $teamId = $userRepository->getTeamId($email);
+        if (!$role = $this->userRepository->logIn($email))
+        {
+            return $this->render('login', ['messages' => ['You are already logged in!']]);
+        }
+
+        $teamId = $this->userRepository->getTeamId($email);
 
         $this->setCookieLive("teamId", $teamId, time() + 3600, '/');
         $this->setCookieLive("user", $email, time() + 3600, '/');
+        $this->setCookieLive("role", $role, time() + 3600, '/');
         
         $mainpage = new DailyRunsController();
         return $mainpage->mainpage();
+    }
+
+    public function logout()
+    {
+        $this->userRepository->logOut($_COOKIE['user']);
+        setcookie("user", '', time() - 7000000, '/');
+        setcookie("teamId", '', time() - 7000000, '/');
+        setcookie("role", '', time() - 7000000, '/');
+        $this->render('login');
     }
 
     public function signup()
@@ -53,10 +74,11 @@ class SecurityController extends AppController
         $surname = $_POST["surname"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $location = $_POST["location"];
 
         $user = new User($name, $surname, $email, $password);
 
-        if ($userRepository->saveUser($user))
+        if ($userRepository->saveUser($user, $location))
         {
             return $this->render('login', ['messages' => ['You can log in now!']]);
         } else

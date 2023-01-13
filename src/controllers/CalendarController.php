@@ -17,6 +17,7 @@ class CalendarController extends AppController
 
     public function calendar()
     {
+        $this->extendCookies();
         if ($this->isPost()) {
             $year = $_POST['year'];
             $month = $_POST['month'];
@@ -24,7 +25,6 @@ class CalendarController extends AppController
         } else {
             $this->today(date('Y/m').'/01');
         }
-
     }
 
     public function today($date)

@@ -33,22 +33,24 @@ class EventController extends AppController
     public function event()
     {
         $eventId = $_GET['id'];
+        $this->renderEvent($eventId);
+    }
+
+    private function renderEvent(int $eventId)
+    {
+        $this->extendCookies();
         $event = $this->eventRepository->getEventWithId($eventId);
-        $today = date("Y-m-d");
         date("Y-m-d") > $event->getDate() ? $finished = true : $finished = false;
+        if ($finished) {
+            $results = $this->eventRepository->getResults($eventId);
+        }
 
         $participants = $this->userRepository->getParticipantsOfEvent($eventId);
         $this->render('event', ['event' => $event,
             'id' => $eventId,
             'participants' => $participants,
-            'finished' => $finished]);
-    }
-
-    public function eventWithId($id)
-    {
-        $event = $this->eventRepository->getEventWithId($id);
-        $participants = $this->userRepository->getParticipantsOfEvent($id);
-        $this->render('event', ['event' => $event, 'id' => $id, 'participants' => $participants]);
+            'finished' => $finished,
+            'results' => $results]);
     }
 
     public function addEvent()
@@ -76,7 +78,7 @@ class EventController extends AppController
 
             $id = $this->eventRepository->saveEvent($event);
 
-            $this->eventWithId($id);
+            $this->renderEvent($id);
         } else {
             $teamController = new TeamController();
             $teamController->setMessages($this->messages);
@@ -168,29 +170,38 @@ class EventController extends AppController
         );
 
         $fileName = dirname(__DIR__).self::RESULTS_FILE_UPLOAD_DIRECTORY.$_FILES['file']['name'];
+        $results = array();
 
         if (($open = fopen($fileName, "r")) !== FALSE)
         {
-            echo 'otwarto';
-
+            while (($data = fgetcsv($open, 100, ';')) !== FALSE) {
+                $results[] = $data;
+            }
             fclose($open);
-        } else {
-            echo 'dupa';
         }
+
+        array_pop($results);
+        foreach ($results as $result) {
+            $this->eventRepository->updateResults($result[0], $result[1], $result[2]);
+        }
+
+        $this->renderEvent($results[0][0]);
     }
 
-    private function validateCSV(): bool
+    public function deleteEvent()
     {
-        if (!is_uploaded_file($_FILES['file']['tmp_name'])) {
-            return false;
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+
+            header('Content-type: application/json');
+            http_response_code(200);
+
+            $eventId = $decoded['idToDelete'];
+
+            $this->eventRepository->deleteEvent($eventId);
         }
-
-        $file = $_FILES['file'];
-
-        if (!isset($file['type']) || $file['type'] != 'text/csv') {
-            return false;
-        }
-
-        return true;
     }
 }

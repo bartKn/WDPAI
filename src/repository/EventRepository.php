@@ -103,4 +103,42 @@ class EventRepository extends Repository
 
         return $eventDays;
     }
+
+    public function updateResults(int $eventId, int $userId, int $position)
+    {
+        $stmt = $this->database->connect()->prepare("UPDATE event_participants SET finish_position = :position
+                                                        WHERE event_id = :eventId AND user_id = :userId;");
+
+        $stmt->bindParam(':position', $position);
+        $stmt->bindParam(':eventId', $eventId);
+        $stmt->bindParam(':userId', $userId);
+
+        $stmt->execute();
+    }
+
+    public function getResults(int $eventId): array
+    {
+        $stmt = $this->database->connect()->prepare("SELECT user_id, finish_position FROM event_participants WHERE event_id = :eventId;");
+
+        $stmt->bindParam(':eventId', $eventId);
+
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $arr = array();
+
+        foreach ($results as $result) {
+            $arr[$result['user_id']] = $result['finish_position'];
+        }
+
+        return $arr;
+    }
+
+    public function deleteEvent(int $eventId)
+    {
+        $stmt = $this->database->connect()->prepare("DELETE FROM events WHERE id = :eventId;");
+
+        $stmt->bindParam(':eventId', $eventId);
+
+        $stmt->execute();
+    }
 }

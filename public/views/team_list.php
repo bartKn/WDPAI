@@ -12,6 +12,7 @@
     <?php include('navigation.php');?>
     <main>
         <div class="teams-container">
+            <h1>teams</h1>
             <?php if (isset($teams)) foreach ($teams as $team): ?>
                 <div class="item">
                     <a class="team-name" href="team?n=<?= $team->getName()?>"><?= $team->getName()?></a>
@@ -24,6 +25,20 @@
                     </form>
                 </div>
             <?php endforeach; ?>
+        </div>
+        <div class="separator"></div>
+        <div class="add-event">
+            <h1>create team</h1>
+            <form action="addTeam" method="POST" ENCTYPE="multipart/form-data">
+                <div class="input-container">
+                    <label for="name">Team name:</label>
+                    <input class="event-input" type="text" placeholder="..." name="teamName">
+                </div>
+                <button class="add-button" type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                    Add team!
+                </button>
+            </form>
         </div>
     </main>
 </div>

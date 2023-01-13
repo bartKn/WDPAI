@@ -60,7 +60,7 @@
                         <label id="email"> <?= $user_details['email'] ?> </label>
                         <label id="location">
                             <i class="fa-solid fa-location-dot"></i>
-                            Location
+                            <?= $user_details['location'] ?>
                         </label>
                     </div>
                 <?php }?>
@@ -68,7 +68,7 @@
                     <form class="pic-change" action="updateProfilePic" method="POST" ENCTYPE="multipart/form-data">
                         <div class="input-container">
                             <label for="file">Profile pic:</label>
-                            <input class="event-input" type="file" id="file" name="file">
+                            <input class="event-input" type="file" id="myfile" name="file">
                         </div>
                         <button class="add-button" type="submit">
                             Update picture!

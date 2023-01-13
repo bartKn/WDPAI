@@ -40,4 +40,11 @@ class AppController
         $_COOKIE[$name] = $value;
         return setcookie($name, $value, $expire, $path);
     }
+
+    protected function extendCookies()
+    {
+        $this->setCookieLive("user", $_COOKIE['user'], time() + 3600, '/');
+        $this->setCookieLive("teamId", $_COOKIE['teamId'], time() + 3600, '/');
+        $this->setCookieLive("role", $_COOKIE['role'], time() + 3600, '/');
+    }
 }

@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/team.css">
 
     <script type="text/javascript" src="/public/js/teamActions.js" defer></script>
+    <script type="text/javascript" src="/public/js/delete.js" defer></script>
     <script src="https://kit.fontawesome.com/32e003c632.js" crossorigin="anonymous"></script>
     <title>TEAM</title>
 </head>
@@ -13,8 +14,9 @@
         <?php include('navigation.php');?>
         <main>
             <section class="items">
+                <h1 class="members-banner">members</h1>
                 <div class="members-container items-container">
-                    <h1 class="members-banner">members</h1>
+
                     <?php if (isset($members)) foreach ($members as $member): ?>
                         <a href="profile?id=<?= $member->getId()?>">
                             <div class="item">
@@ -33,13 +35,19 @@
                             </button>
                         </form>
                     <?php } else { ?>
-                        <form action="joinTeam" method="POST">
-                            <input type="hidden" name="teamId" value="<?php echo $id?>" />
-                            <button id="join-button" class="add-button member-button" type="submit">
-                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                Join team
-                            </button>
-                        </form>
+                        <?php if ($_COOKIE['role'] === 'admin') { $disabled = 'disabled'; ?>
+                            <form>
+                                <button id="delete-button" name="team">Delete team</button>
+                            </form>
+                        <?php } else { ?>
+                            <form action="joinTeam" method="POST">
+                                <input type="hidden" name="teamId" value="<?php echo $id?>" />
+                                <button id="join-button" class="add-button member-button" type="submit">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    Join team
+                                </button>
+                            </form>
+                        <?php } ?>
                     <?php } ?>
                 </section>
             </section>
@@ -103,6 +111,10 @@
         </main>
     </div>
 </body>
+
+<script>
+    let id = <?php if(isset($id)) echo json_encode($id); ?>;
+</script>
 
 <template id="members-template">
     <a>
