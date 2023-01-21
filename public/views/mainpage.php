@@ -13,7 +13,7 @@
         <?php include('navigation.php');?>
         <main>
             <section class="items">
-                <h1>Today's runs</h1>
+                <h1>today's runs</h1>
                 <div class="items-container">
                     <?php if (isset($runs)) foreach ($runs as $run): ?>
                         <a>
@@ -41,7 +41,7 @@
             </section>
             <div class="separator"></div>
             <div class="add-event">
-                <h1>Add new run!</h1>
+                <h1>add new run!</h1>
                 <form action="addRun" method="POST">
                     <div class="input-container">
                         <label for="start-point">Start point:</label>

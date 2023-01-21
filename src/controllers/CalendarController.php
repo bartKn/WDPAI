@@ -17,6 +17,7 @@ class CalendarController extends AppController
 
     public function calendar()
     {
+        if (!$this->checkCookies()) return;
         $this->extendCookies();
         if ($this->isPost()) {
             $year = $_POST['year'];

@@ -38,6 +38,7 @@ class EventController extends AppController
 
     private function renderEvent(int $eventId)
     {
+        if (!$this->checkCookies()) return;
         $this->extendCookies();
         $event = $this->eventRepository->getEventWithId($eventId);
         date("Y-m-d") > $event->getDate() ? $finished = true : $finished = false;

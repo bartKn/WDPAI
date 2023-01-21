@@ -25,6 +25,7 @@ class ProfileController extends AppController
 
     public function profile()
     {
+        if (!$this->checkCookies()) return;
         $this->extendCookies();
         if (isset($_GET['id'])) {
             $user = $this->userRepository->getUserById($_GET['id']);

@@ -35,6 +35,15 @@ class AppController
         print $output;
     }
 
+    protected function checkCookies(): bool
+    {
+        if (!isset($_COOKIE['user'])) {
+            $this->render('login');
+            return false;
+        }
+        return true;
+    }
+
     protected function setCookieLive($name, $value='', $expire = 0, $path = ''): bool
     {
         $_COOKIE[$name] = $value;

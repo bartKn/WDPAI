@@ -36,6 +36,7 @@ class TeamController extends AppController
 
     public function team()
     {
+        if (!$this->checkCookies()) return;
         $this->extendCookies();
         if (isset($_GET['n'])) {
             $team_id = $this->teamRepository->getTeamId($_GET['n']);
