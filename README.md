@@ -1,20 +1,13 @@
 # Run 'n joy. 
 ## A website to help you find running partners
 
-> Project created during 'Introduction to internet applications design' course.
+Project created during 'Introduction to internet applications design' course.
 
-
+***
 ## Technologies used
-
-<img alt="Docker" src="https://img.shields.io/badge/-Docker-46a2f1?style=flat-square&logo=docker&logoColor=white" />
-<img alt="html5" src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
-<img alt="Css" src="https://img.shields.io/badge/CSS-239120?&style=flat-square&logo=css3&logoColor=white" />
-<img alt="Php" src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat-square&logo=php&logoColor=white" />
-<img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-323330?style=flat-square&logo=javascript&logoColor=F7DF1E" />
-<img alt="postgresql" src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white" />
-<img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
-
+[![My Skills](https://skills.thijs.gg/icons?i=php,html,css,js,postgres,docker,git)](https://skills.thijs.gg)
 *** 
+
 ## To run application
 
 1. Download Docker
@@ -28,6 +21,7 @@
 > http://localhost:8080/
 
 PostgreSQL database will be accessible only after connecting to it.
+***
 
 ## Functionalities:
 * Creating account
@@ -41,17 +35,21 @@ PostgreSQL database will be accessible only after connecting to it.
 
 # Preview
 
-***
 ## Login page
-![login](../login.png)
+![login](https://user-images.githubusercontent.com/91941735/213883214-cfa3f325-a3a3-4c7a-8bdc-a39e274df5c6.png)
+***
 ## Mainpage
-![mainpage](../mainpage.png)
+![mainpage](https://user-images.githubusercontent.com/91941735/213883199-3a0fe6a8-f2c2-4845-a80f-817cca2a4fc1.png)
+***
 ## Team view
-![team](../team.png)
+![team](https://user-images.githubusercontent.com/91941735/213883204-65f532e6-698d-4da1-8362-eb61b7e046b7.png)
+***
 ## Calendar with events
-![calendar](../calendar.png)
+![calendar](https://user-images.githubusercontent.com/91941735/213883193-ec0a216b-2f79-4c24-af41-285930589218.png)
+***
 ## Event
-![event](../event.png)
+![event](https://user-images.githubusercontent.com/91941735/213883196-95daf2bf-3ce1-4819-a9eb-22f10ba0e750.png)
+***
 ## Profile
-![profile](../profile.png)
+![profile](https://user-images.githubusercontent.com/91941735/213883203-a0144466-3f24-4c1f-a120-6cc2747c7e59.png)
 ***
