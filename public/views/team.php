@@ -42,7 +42,7 @@
                         <?php } else { ?>
                             <form action="joinTeam" method="POST">
                                 <input type="hidden" name="teamId" value="<?php echo $id?>" />
-                                <button id="join-button" class="add-button member-button" type="submit">
+                                <button id="join-button" onclick="joinTeam()" class="add-button member-button" type="submit">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                     Join team
                                 </button>

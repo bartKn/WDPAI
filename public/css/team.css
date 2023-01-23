@@ -266,4 +266,30 @@ select {
     .items > h1 {
         font-size: 200%;
     }
+
+    .teams-container {
+        width: 100%;
+        height: 80%;
+    }
+
+    .teams-container > .item {
+        width: 80%;
+    }
+
+    #add-team-mobile {
+        height: 40%;
+        margin-top: 10%;
+    }
+
+    #add-team-mobile > h1 {
+        font-size: 300%;
+    }
+
+    #add-button-mobile {
+        height: 100%;
+    }
+
+    #input-container-mobile {
+        height: 100%;
+    }
 }

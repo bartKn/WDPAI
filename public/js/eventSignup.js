@@ -3,9 +3,13 @@ const button = document.querySelector('#signup');
 const signed = document.querySelector('#signed');
 const spinner = document.getElementById("spinner");
 
-button.addEventListener('click', function () {
+function signupForEvent () {
+
+    if (button === null) {
+        return;
+    }
     const data = {
-      eventId : id
+        eventId : id
     };
 
     spinner.removeAttribute('hidden');
@@ -24,7 +28,7 @@ button.addEventListener('click', function () {
         loadParticipants(participants);
         spinner.setAttribute('hidden', '');
     })
-});
+}
 
 function disableButton() {
     button.disabled = true;

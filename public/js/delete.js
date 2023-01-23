@@ -1,9 +1,13 @@
 const deleteButton = document.querySelector('#delete-button');
 
-deleteButton.addEventListener('click', function () {
+function deleteEvent () {
     const data = {
         idToDelete : id
     };
+
+    if (deleteButton === null) {
+        return;
+    }
 
     let buttonName = deleteButton.getAttribute("name");
     let url;
@@ -23,4 +27,4 @@ deleteButton.addEventListener('click', function () {
     }).then(function () {
         window.location.href='mainpage';
     });
-})
+}

@@ -27,14 +27,14 @@
             <?php endforeach; ?>
         </div>
         <div class="separator"></div>
-        <div class="add-event">
+        <div class="add-event" id="add-team-mobile">
             <h1>create team</h1>
             <form action="addTeam" method="POST" ENCTYPE="multipart/form-data">
-                <div class="input-container">
+                <div class="input-container" id="input-container-mobile">
                     <label for="name">Team name:</label>
                     <input class="event-input" type="text" placeholder="..." name="teamName">
                 </div>
-                <button class="add-button" type="submit">
+                <button class="add-button" type="submit" id="add-button-mobile">
                     <i class="fa-solid fa-plus"></i>
                     Add team!
                 </button>

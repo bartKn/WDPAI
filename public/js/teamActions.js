@@ -1,10 +1,13 @@
 const joinButton = document.querySelector("#join-button");
-const leaveButton = document.querySelector("#leave-button");
 const membersContainer = document.querySelector(".members-container");
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-joinButton.addEventListener("click", function () {
+function joinTeam() {
+
+    if (joinButton === null) {
+        return;
+    }
     const data = {
         teamName : urlParams.get('n')
     };
@@ -23,11 +26,7 @@ joinButton.addEventListener("click", function () {
         membersContainer.innerHTML = "";
         loadMembers(members);
     })
-});
-
-leaveButton.addEventListener("click", function () {
-
-});
+}
 
 
 function loadMembers(members) {

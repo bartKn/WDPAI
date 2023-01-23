@@ -49,7 +49,7 @@
                     </form>
                 <?php } else { ?>
                     <?php if ($_COOKIE['role'] === 'admin') { $disabled = 'disabled'; ?>
-                        <button id="delete-button" name="event">Delete event</button>
+                        <button id="delete-button" name="event" onclick="deleteEvent()">Delete event</button>
                     <?php } else { ?>
                         <button>Download GPS track</button>
                     <?php } ?>
@@ -66,7 +66,7 @@
                         }
                     }
                     ?>
-                    <button id="signup" <?php echo $disabled ?>>Sign up for event!</button>
+                    <button id="signup" onclick="signupForEvent()" <?php echo $disabled ?>>Sign up for event!</button>
                 <?php } ?>
             </section>
             <div class="separator"></div>

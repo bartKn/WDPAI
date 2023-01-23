@@ -111,6 +111,10 @@ nav > a > img {
         font-size: 36px;
     }
 
+    nav {
+        height: 144px;
+    }
+
     main {
         height: 100%;
         display: flex;
